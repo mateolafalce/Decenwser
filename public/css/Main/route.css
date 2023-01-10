@@ -1,0 +1,39 @@
+#route {
+    padding: 0.7%;
+    background-color: var(--NEON);
+    color: black;
+    display: flex;
+    text-align: justify;
+    align-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#route p {
+    background-color: var(--NEON);
+    color: var(--NEON);
+}
+
+#route:hover  {
+    
+    background-color: black;
+    color: var(--NEON);
+}
+
+#route:hover p {
+    background-color: black;
+    color: black;
+}
+#route:hover div {
+    background-color: black;
+    color: var(--NEON);
+}
+
+#item {
+    background-color: var(--NEON);
+    color: black;
+    display: flex;
+    text-align: right;
+    align-content: center;
+}

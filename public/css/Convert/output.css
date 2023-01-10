@@ -1,0 +1,9 @@
+#output {
+    text-align: justify;
+    margin:2%;
+}
+
+#copy-output {
+    float: right;
+    margin: 2%;
+}

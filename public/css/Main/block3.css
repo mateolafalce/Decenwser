@@ -1,0 +1,15 @@
+#block3 {
+    margin: 0 auto;
+    position: absolute;
+    top: 25%;
+    left: 45%;
+    margin: -25px 0 0 -25px;
+    font-size: 300%;
+    letter-spacing: 5px;
+    text-shadow: 10px 10px 10px #6B19AF;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+#block3:hover {
+    cursor: default;
+}

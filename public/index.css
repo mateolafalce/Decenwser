@@ -1,0 +1,21 @@
+@import "css/Main/particles.css";
+@import "css/Main/input-bar.css";
+@import "css/Main/input-button.css";
+@import "css/Main/appCollector.css";
+@import "css/Main/block3.css";
+@import "css/Main/top-bar.css";
+@import "css/Main/route.css";
+@import "css/Main/unlock.css";
+@import "css/Convert/output.css";
+
+:root{
+    --NEON: #00FF19;
+    --BG: #01040f;
+}
+
+* {
+    background: var(--BG);
+    color: VAR(--NEON);
+    padding: 0%;
+    margin: 0%;
+}
