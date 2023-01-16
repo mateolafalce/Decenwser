@@ -1,5 +1,5 @@
+pub use encode::*;
 pub use get_page::*;
-pub use render_app::*;
 
+pub mod encode;
 pub mod get_page;
-pub mod render_app;

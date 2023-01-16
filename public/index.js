@@ -1,12 +1,14 @@
 function get_page() {
   input = document.getElementsByName("search")[0].value;
-  fetch("/get_app", {
+  fetch("/get_page", {
     method: "POST",
     body: input,
   })
     .then((res) => res.json())
     .then((result) => {
-      let htmlContent = [];
+      document.write(result.html);
+      document.getElementById("css").innerHTML = result.css;
+      /*let htmlContent = [];
       let iter = 1;
       let len = result.html.length;
 
@@ -53,6 +55,10 @@ function get_page() {
         `;
         xhr.send(data1);
       }
+    */
     })
     .catch((error) => console.error("Error:", error));
+}
+function convert() {
+  window.location.replace("/convert");
 }

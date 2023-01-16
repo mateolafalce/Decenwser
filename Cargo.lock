@@ -533,13 +533,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "block"
-version = "0.1.0"
-dependencies = [
- "anchor-lang",
-]
-
-[[package]]
 name = "block-buffer"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -569,8 +562,9 @@ name = "block3-rust"
 version = "0.1.0"
 dependencies = [
  "anchor-client",
+ "anchor-lang",
  "anyhow",
- "block",
+ "decenwser",
  "rocket",
  "rocket_dyn_templates",
 ]
@@ -1065,6 +1059,13 @@ name = "data-encoding"
 version = "2.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "23d8666cb01533c39dde32bcbab8e227b4ed6679b2c925eba05feabea39508fb"
+
+[[package]]
+name = "decenwser"
+version = "0.1.0"
+dependencies = [
+ "anchor-lang",
+]
 
 [[package]]
 name = "der"

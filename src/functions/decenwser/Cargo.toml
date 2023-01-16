@@ -1,12 +1,12 @@
 [package]
-name = "block"
+name = "decenwser"
 version = "0.1.0"
-description = ""
+description = "."
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "block"
+name = "decenwser"
 
 [features]
 no-entrypoint = []

@@ -5,9 +5,10 @@ edition = "2021"
 
 
 [dependencies]
+decenwser = { path = "./src/functions/decenwser", features = ["no-entrypoint"] }
 rocket = {version="0.5.0-rc.2", features = ["json"]}
-block = { path = "./src/functions/programs/block3", features = ["no-entrypoint"] }
 anchor-client = "0.26.0"
+anchor-lang = "0.26.0"
 anyhow = "1.0.32"
 
 [dependencies.rocket_dyn_templates]
