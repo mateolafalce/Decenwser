@@ -6,6 +6,6 @@ pub fn index() -> Template {
         "index",
         context! {
             foo: 123,
-        },
+        }
     )
 }

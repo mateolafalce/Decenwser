@@ -1,64 +1,23 @@
-function get_page() {
-  input = document.getElementsByName("search")[0].value;
+function convert() {
+  window.location.replace("/convert");
+}
+
+async function get_page() {
   fetch("/get_page", {
     method: "POST",
-    body: input,
+    body: document.getElementsByName("search")[0].value,
   })
     .then((res) => res.json())
     .then((result) => {
+      document.close();
       document.write(result.html);
       document.getElementById("css").innerHTML = result.css;
-      /*let htmlContent = [];
-      let iter = 1;
-      let len = result.html.length;
-
-      request(iter, len);
-      async function request(iter, len) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://api.devnet.solana.com");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = async function () {
-          if (xhr.readyState === 4) {
-            var html = await JSON.parse(
-              xhr.response
-            ).result.meta.logMessages[2].slice(13);
-            console.log(html);
-            htmlContent += html;
-            if (len > iter) {
-              iter++;
-              await request(iter, len);
-            } else {
-              let x = htmlContent
-                .replace(/#~/g, '"')
-                .replace(/°¬/g, "\\")
-                .replace(/#!/g, ",");
-              console.log(x);
-              document.write(
-                htmlContent
-                  .replace(/#~/g, '"')
-                  .replace(/°¬/g, "\\")
-                  .replace(/#!/g, ",")
-              );
-            }
-          }
-        };
-        var data1 = `
-        {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "getTransaction",
-            "params": [
-            "${result.html[iter - 1]}",
-            "json"
-            ]
-        }
-        `;
-        xhr.send(data1);
-      }
-    */
     })
-    .catch((error) => console.error("Error:", error));
-}
-function convert() {
-  window.location.replace("/convert");
+    .catch((error) => {
+      window.location.replace("http://127.0.0.1:8000");
+      console.error("Error:", error);
+    });
+  document.write(
+    '<!DOCTYPE html><html lang="en"><link rel="icon" href="./Decenwser.ico"><div><h1 id="loading">Loading...</h1></div><style>#loading {position: absolute; top: 50%;  left: 50%;  transform: translate(-50%, -50%);font-family: "Times New Roman", Times, serif;font-style: italic;}</style></html>'
+  );
 }

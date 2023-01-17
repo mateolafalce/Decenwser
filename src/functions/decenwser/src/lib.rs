@@ -1,26 +1,58 @@
 use anchor_lang::prelude::*;
+use instructions::*;
+use crate::error::ErrorCode;
+
+
+pub mod error;
+pub mod instructions;
+pub mod state;
 
 declare_id!("4CXvM9ENhCMGsfz7YPjqDjAkqwLqMwTvw3SBq3YChBNN");
 
-#[account]
-pub struct MainAccount {
-    pub bump_original: u8,      // 1
-    pub authority: Pubkey,      // 32
-    pub web_name: String,       // 4 + 32
-    pub html: Vec<u64>,         // 4 + 8
-    pub css: Vec<u64>,          // 4 + 8
-    pub js: Vec<u64>,           // 4 + 8
-    pub len: u16,               // 2
-}
-#[account]
-pub struct HTML {
-    pub html: String
-}
-#[account]
-pub struct CSS {
-    pub css: String      
-}
-#[account]
-pub struct JS {
-    pub js: String    
+#[program]
+pub mod decenwser {
+    use super::*;
+    pub fn decenwser(
+        ctx: Context<Decenwser>,
+    ) -> Result<()> {
+        instructions::decenwser::decenwser(
+            ctx,
+        )
+    }
+    pub fn html_store(
+        ctx: Context<HtmlStore>,
+        html: String
+    ) -> Result<()> {
+        instructions::html_store::html_store(
+            ctx,
+            html
+        )
+    }
+    pub fn css_store(
+        ctx: Context<CssStore>,
+        css: String
+    ) -> Result<()> {
+        instructions::css_store::css_store(
+            ctx,
+            css
+        )
+    }
+    pub fn js_store(
+        ctx: Context<JsStore>,
+        js: String
+    ) -> Result<()> {
+        instructions::js_store::js_store(
+            ctx,
+            js
+        )
+    }
+    pub fn main_account(
+        ctx: Context<MainAccountStruct>,
+        web_name: String
+    ) -> Result<()> {
+        instructions::main_account::main_account(
+            ctx,
+            web_name
+        )
+    }
 }

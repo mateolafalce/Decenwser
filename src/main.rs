@@ -5,6 +5,7 @@ mod pages;
 extern crate rocket;
 use functions::encode::encode;
 use functions::get_page::get_page;
+use functions::send_app::send_html;
 use pages::convert_page;
 use pages::main_page;
 use rocket::fs::{relative, FileServer};
@@ -17,6 +18,7 @@ fn rocket() -> _ {
         .mount("/encode", routes![encode::index])
         .mount("/get_page", routes![get_page::index])
         .mount("/convert", routes![convert_page::index])
+        //.mount("/send_html", routes![send_html::index])
         .mount("/", FileServer::from(relative!("/public")))
         .attach(Template::fairing())
 }

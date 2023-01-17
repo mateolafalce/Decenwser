@@ -6,6 +6,6 @@ pub fn index() -> Template {
         "convert",
         context! {
             foo: 123,
-        },
+        }
     )
 }

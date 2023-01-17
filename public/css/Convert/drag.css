@@ -1,0 +1,22 @@
+#drop-area {
+    right: 25%;
+    width: 50%;
+    height: 200px;
+    border: 2px dashed #ccc;
+    text-align: center;
+    font-size: 20px;
+  }
+  
+  .button {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    height: 50px;
+    width: 200px;
+    margin: 20px;
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }

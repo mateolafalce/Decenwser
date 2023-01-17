@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="icon" href="./Decenwser.ico">
     <link rel="stylesheet" href="./index.css">
-    <script src="/convert.js" defer></script>
+    <script src="/pages/convert.js" defer></script>
 <div>
     <input
         type="text"
@@ -16,4 +17,11 @@
         delete
       </button>
 </div>
+<div id="drop-area">
+    <form class="my-form">
+      <p>Drag and drop your files here</p>
+      <input type="file" id="fileElem" multiple accept=".js, .html, .css" onchange="handleFiles(this.files)" hidden>
+      <label class="button" for="fileElem">Select files</label>
+    </form>
+  </div>  
 </html>

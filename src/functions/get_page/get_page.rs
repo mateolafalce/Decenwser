@@ -19,7 +19,7 @@ pub struct App {
 
 pub fn get_page(domain: String) -> Result<App> {
     let program_id: Pubkey =
-        Pubkey::from_str("4CXvM9ENhCMGsfz7YPjqDjAkqwLqMwTvw3SBq3YChBNN").unwrap();
+        Pubkey::from_str("5t8N3VyXYMRYvuRQtmTZ3HmmRYK7En9ZHXVLLQZBC4gr").unwrap();
     let (pda, _bump) =
         Pubkey::find_program_address(&[&hash(domain.as_bytes()).to_bytes()], &program_id);
     let client: Client = Client::new(Cluster::Devnet, Rc::new(Keypair::new()));
@@ -58,7 +58,7 @@ pub fn get_page(domain: String) -> Result<App> {
 }
 pub fn html_request(html_iter: usize, domain: String) -> Result<String> {
     let program_id: Pubkey =
-        Pubkey::from_str("4CXvM9ENhCMGsfz7YPjqDjAkqwLqMwTvw3SBq3YChBNN").unwrap();
+        Pubkey::from_str("5t8N3VyXYMRYvuRQtmTZ3HmmRYK7En9ZHXVLLQZBC4gr").unwrap();
     let client: Client = Client::new(Cluster::Devnet, Rc::new(Keypair::new()));
     let program: Program = client.program(program_id);
     let (pda, _bump) =
@@ -71,7 +71,7 @@ pub fn html_request(html_iter: usize, domain: String) -> Result<String> {
 }
 pub fn css_request(css_iter: usize, domain: String) -> Result<String> {
     let program_id: Pubkey =
-        Pubkey::from_str("4CXvM9ENhCMGsfz7YPjqDjAkqwLqMwTvw3SBq3YChBNN").unwrap();
+        Pubkey::from_str("5t8N3VyXYMRYvuRQtmTZ3HmmRYK7En9ZHXVLLQZBC4gr").unwrap();
     let client: Client = Client::new(Cluster::Devnet, Rc::new(Keypair::new()));
     let program: Program = client.program(program_id);
     let (pda, _bump) =
@@ -84,7 +84,7 @@ pub fn css_request(css_iter: usize, domain: String) -> Result<String> {
 }
 pub fn js_request(js_iter: usize, domain: String) -> Result<String> {
     let program_id: Pubkey =
-        Pubkey::from_str("4CXvM9ENhCMGsfz7YPjqDjAkqwLqMwTvw3SBq3YChBNN").unwrap();
+        Pubkey::from_str("5t8N3VyXYMRYvuRQtmTZ3HmmRYK7En9ZHXVLLQZBC4gr").unwrap();
     let client: Client = Client::new(Cluster::Devnet, Rc::new(Keypair::new()));
     let program: Program = client.program(program_id);
     let (pda, _bump) =
