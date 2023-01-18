@@ -1,3 +1,7 @@
+var html_output = document.getElementById("html-output");
+var css_output = document.getElementById("css-output");
+var js_output = document.getElementById("js-output");
+
 function convertInput() {
   let input = document.getElementsByName("input")[0].value;
   fetch("/encode", {
@@ -92,14 +96,34 @@ function uploadFile(files) {
       })
         .then((res) => res.json())
         .then(async (result) => {
-          let parts = [];
+          let parts = [""];
           for (let i = 0; i < result.output.length; i += 932) {
             parts.push(result.output.substring(i, i + 932));
           }
+          //var button = document.createElement("button-js");
+          //button.innerHTML = "<button id='button-js'>Send</button>";
+          //newElement.innerHTML = parts[0];
+          //js_output.appendChild(button);
+          //send_js(await parts[0]);
           console.log(parts);
         })
         .catch((error) => console.error("Error:", error));
     };
     reader.readAsText(files);
   }
+}
+function send_js(js) {
+  var data = {
+    web_name: "mateo",
+    js: js,
+  };
+  fetch("/send_js", {
+    method: "POST",
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => console.error("Error:", error));
 }

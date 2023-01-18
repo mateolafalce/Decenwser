@@ -7,3 +7,8 @@
     float: right;
     margin: 2%;
 }
+#button-js {
+    cursor: pointer;
+    background-color: aliceblue;
+    color: black;
+}

@@ -16,7 +16,7 @@ use crate::functions::constants::{wallet, program_id};
 
 #[derive(Debug, Deserialize, Serialize)]
 #[serde(crate = "rocket::serde")]
-pub struct HtmlTx {
+pub struct CssTx {
     pub tx: String,
     pub pda: String,
 }
@@ -24,13 +24,13 @@ pub struct HtmlTx {
 #[serde(crate = "rocket::serde")]
 pub struct Webdata {
     web_name: String,
-    html: String
+    css: String
 }
 
-pub fn send_html(
+pub fn send_css(
     web_name: String,
-    html: String 
-) -> Result<HtmlTx> {
+    css: String 
+) -> Result<CssTx> {
     let program = Client::new(
         Cluster::Devnet,
         Rc::new(
@@ -43,27 +43,27 @@ pub fn send_html(
     let (decenwser, _bump): (Pubkey, u8) =
         Pubkey::find_program_address(&[b"Decenwser"], &program.id());
     let account: DecenwserAccount = program.account(decenwser)?;
-    let (html_store, _bump): (Pubkey, u8) =
+    let (css_store, _bump): (Pubkey, u8) =
         Pubkey::find_program_address(&[&account.total_updates.to_le_bytes()], &program.id());
     let tx: Signature = program
         .request()
-        .accounts(decenwser::accounts::HtmlStore {
+        .accounts(decenwser::accounts::CssStore {
             main_account,
             decenwser,
-            html_store,
+            css_store,
             signer: program.payer(),
             system_program: system_program::ID,
         })
-        .args(decenwser::instruction::HtmlStore { html })
+        .args(decenwser::instruction::CssStore { css })
         .send()?;
-    let output: HtmlTx = HtmlTx {
+    let output: CssTx = CssTx {
         tx: tx.to_string(),
-        pda: html_store.to_string(),
+        pda: css_store.to_string(),
     };
     Ok(output)
 }
 
 #[post("/", data = "<web_data>")]
-pub fn index(web_data: Json<Webdata>) -> Json<HtmlTx> {
-    Json(send_html(web_data.web_name.clone(), web_data.html.clone()).unwrap())
+pub fn index(web_data: Json<Webdata>) -> Json<CssTx> {
+    Json(send_css(web_data.web_name.clone(), web_data.css.clone()).unwrap())
 }
