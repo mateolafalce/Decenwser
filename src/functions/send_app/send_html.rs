@@ -9,28 +9,16 @@ use anchor_client::{
 };
 use anyhow::{Ok, Result};
 use decenwser::state::DecenwserAccount;
-use rocket::serde::{json::Json, Deserialize, Serialize};
+use rocket::serde::json::Json;
 use std::rc::Rc;
 use std::str::FromStr;
-use crate::functions::constants::{wallet, program_id};
+use crate::functions::constants::{wallet, program_id, web_data::Webdata, tx_output::Output};
 
-#[derive(Debug, Deserialize, Serialize)]
-#[serde(crate = "rocket::serde")]
-pub struct HtmlTx {
-    pub tx: String,
-    pub pda: String,
-}
-#[derive(Debug, Deserialize, Serialize)]
-#[serde(crate = "rocket::serde")]
-pub struct Webdata {
-    web_name: String,
-    html: String
-}
 
 pub fn send_html(
     web_name: String,
     html: String 
-) -> Result<HtmlTx> {
+) -> Result<Output> {
     let program = Client::new(
         Cluster::Devnet,
         Rc::new(
@@ -56,7 +44,7 @@ pub fn send_html(
         })
         .args(decenwser::instruction::HtmlStore { html })
         .send()?;
-    let output: HtmlTx = HtmlTx {
+    let output: Output = Output {
         tx: tx.to_string(),
         pda: html_store.to_string(),
     };
@@ -64,6 +52,6 @@ pub fn send_html(
 }
 
 #[post("/", data = "<web_data>")]
-pub fn index(web_data: Json<Webdata>) -> Json<HtmlTx> {
-    Json(send_html(web_data.web_name.clone(), web_data.html.clone()).unwrap())
+pub fn index(web_data: Json<Webdata>) -> Json<Output> {
+    Json(send_html(web_data.web_name.clone(), web_data.content.clone()).unwrap())
 }

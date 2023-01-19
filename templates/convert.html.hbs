@@ -1,38 +1,28 @@
-<!DOCTYPE html>
 <html lang="en">
-    <link rel="icon" href="./Decenwser.ico">
-    <link rel="stylesheet" href="./index.css">
-    <script src="/pages/convert.js" defer></script>
-<div>
-    <input
-        type="text"
-        name="input"
-        id="output"
-        className="convert"
-      />
-      <button onclick="convertInput()" width="50">
-        Convert
-      </button>
-      <button onclick="deleteInput()" width="50">
-        delete
-      </button>
-</div>
-<div id="drop-area">
+  <link rel="icon" href="./Decenwser.ico" />
+  <link rel="stylesheet" href="./index.css" />
+  <script src="/pages/convert.js" defer></script>
+  <div id="drop-area">
     <form class="my-form">
       <p>Drag and drop your files here</p>
-      <input type="file" id="fileElem" multiple accept=".js, .html, .css" onchange="handleFiles(this.files)" hidden>
+      <input
+        type="file"
+        id="fileElem"
+        multiple
+        accept=".js, .html, .css"
+        onchange="handleFiles(this.files)"
+        hidden
+      />
       <label class="button" for="fileElem">Select files</label>
     </form>
   </div>
   <div id="output">
     <div id="html-output">
-
     </div>
     <div id="css-output">
-
     </div>
     <div id="js-output">
-      <button id='button-js'>Send</button>
     </div>
-  </div>  
+    <h1 id="counter">0</h1>
+  </div>
 </html>

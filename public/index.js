@@ -12,9 +12,10 @@ async function get_page() {
       document.close();
       document.write(result.html);
       document.getElementById("css").innerHTML = result.css;
+      document.getElementById("js").innerHTML = result.js;
     })
     .catch((error) => {
-      window.location.replace("http://127.0.0.1:8000");
+      //window.location.replace("http://127.0.0.1:8000");
       console.error("Error:", error);
     });
   document.write(

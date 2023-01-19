@@ -9,28 +9,15 @@ use anchor_client::{
 };
 use anyhow::{Ok, Result};
 use decenwser::state::DecenwserAccount;
-use rocket::serde::{json::Json, Deserialize, Serialize};
+use rocket::serde::json::Json;
 use std::rc::Rc;
 use std::str::FromStr;
-use crate::functions::constants::{wallet, program_id};
-
-#[derive(Debug, Deserialize, Serialize)]
-#[serde(crate = "rocket::serde")]
-pub struct CssTx {
-    pub tx: String,
-    pub pda: String,
-}
-#[derive(Debug, Deserialize, Serialize)]
-#[serde(crate = "rocket::serde")]
-pub struct Webdata {
-    web_name: String,
-    css: String
-}
+use crate::functions::constants::{wallet, program_id, web_data::Webdata, tx_output::Output};
 
 pub fn send_css(
     web_name: String,
     css: String 
-) -> Result<CssTx> {
+) -> Result<Output> {
     let program = Client::new(
         Cluster::Devnet,
         Rc::new(
@@ -56,7 +43,7 @@ pub fn send_css(
         })
         .args(decenwser::instruction::CssStore { css })
         .send()?;
-    let output: CssTx = CssTx {
+    let output: Output = Output {
         tx: tx.to_string(),
         pda: css_store.to_string(),
     };
@@ -64,6 +51,6 @@ pub fn send_css(
 }
 
 #[post("/", data = "<web_data>")]
-pub fn index(web_data: Json<Webdata>) -> Json<CssTx> {
-    Json(send_css(web_data.web_name.clone(), web_data.css.clone()).unwrap())
+pub fn index(web_data: Json<Webdata>) -> Json<Output> {
+    Json(send_css(web_data.web_name.clone(), web_data.content.clone()).unwrap())
 }
