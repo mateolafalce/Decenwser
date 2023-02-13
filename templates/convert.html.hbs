@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>Convert</title>
+  <link rel="icon" href="../Decenwser.ico" />
+  <link rel="stylesheet" href="../index.css" />
+  <script src="/pages/convert/encode.js" defer></script>
+  <script src="/pages/convert/send_html.js" defer></script>
+  <script src="/pages/convert/send_js.js" defer></script>
+  <script src="/pages/convert/upload_file.js" defer></script>
+  <script src="/pages/convert/init_domain.js" defer></script>
+  <script src="/pages/convert/store_wallet.js" defer></script>
+  <h2>Initialize web3 domain</h2>
+  <input
+  id="init-domain" 
+  >
+  <button onclick="init_domain()">Create</button>
+  <div id="drop-area">
+    <form class="my-form">
+      <p>Drag and drop your files here</p>
+      <input
+        type="file"
+        id="fileElem"
+        multiple
+        accept=".js, .html"
+        onchange="handleFiles(this.files)"
+        hidden
+      />
+      <label class="button" for="fileElem">Select files</label>
+    </form>
+  </div>
+  <div>
+    <input type="file" id="fileInput">
+  </div>
+  <div id="output">
+    <button id="html-button">Send HTML</button>
+    <div id="amount-html"></div>
+    <br>
+    <button id="js-button">Send JS</button>
+    <div id="amount-js"></div>
+    <div id="html-output">
+    <div id="js-output">
+    </div>
+  </div>
+</html>

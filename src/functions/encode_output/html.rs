@@ -1,0 +1,1 @@
+pub const DATA: [&str;1] = ["Ok"];

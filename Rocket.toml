@@ -1,0 +1,8 @@
+[default]
+limits = { string = 4400000, forms = 4400000}
+workers = 50
+port = 2004
+
+[default.shutdown]
+grace = 10
+mercy = 5
