@@ -7,11 +7,11 @@ use anchor_client::Cluster;
 use anyhow::{Result, Ok};
 use crate::functions::{
     config_settings::get_config_settings::get_config_settings,
-    constants::config::Config
+    constants::state::State
 };
 
 pub fn cluster() -> Result<Cluster> {
-    let config: Config = get_config_settings().unwrap();
+    let config: State = get_config_settings().unwrap();
     let cluster: Cluster = match config.network {
         true => Cluster::Mainnet,
         false => Cluster::Devnet

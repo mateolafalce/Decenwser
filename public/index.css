@@ -9,7 +9,7 @@
 @import "css/Convert/output.css";
 @import "css/Main/footer.css";
 @import "css/Convert/drag.css";
-
+@import "css/Convert/progress-bar.css";
 :root{
     --NEON: #00FF19;
     --BG: #01040f;
@@ -21,3 +21,4 @@
     padding: 0%;
     margin: 0%;
 }
+  

@@ -20,7 +20,7 @@ pub fn encode(input: String, html_js: String){
     let output: String = input.replace('"', "#~").replace('\\', "#&").replace(',', "#!");
     let lines: Vec<&str> = output.split("\n").collect::<Vec<&str>>();
     let text: String = lines.join("\n");
-    let path: String = "src/encode_output/".to_owned() + &html_js + ".rs";
+    let path: String = "src/functions/encode_output/".to_owned() + &html_js + ".rs";
     let modify: File = OpenOptions::new().create(false).write(true).truncate(true).open(path).expect("Error");
     let mut file: File = modify.try_clone().expect("Error");
     let chunks: Vec<String> = text.chars().collect::<Vec<_>>()

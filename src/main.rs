@@ -1,7 +1,5 @@
 /*
-  -Google opens at "http://127.0.0.1:2004/main"
-  TODO: Give the user the choice of the default browser
-  TODO: manage the Errors
+  -Roots
 */
 
 mod functions;
@@ -13,7 +11,7 @@ use functions::{
     encode::encode, 
     get_page::{store_len, get_page, clear, store_domain}, 
     create_app::create_app, 
-    send_app::{send_app, store_wallet},
+    send_app::{send_app, store_wallet, get_iter},
     store_app::store_app, 
     delete::{delete_pda, delete_stored_app},
     config_settings::{get_config_settings, modify_network},
@@ -37,6 +35,7 @@ Command::new("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
         .mount("/modify_network", routes![modify_network::index])
         .mount("/main", routes![web::index])
         .mount("/encode", routes![encode::index])
+        .mount("/get_iter", routes![get_iter::index])
         .mount("/store_wallet", routes![store_wallet::index])
         .mount("/store_domain", routes![store_domain::index])
         .mount("/get_len", routes![store_len::index])

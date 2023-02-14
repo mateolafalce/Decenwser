@@ -10,7 +10,10 @@ use std::{
     path::Path 
 };
 use crate::functions::{
-    send_app::store_wallet::store_wallet
+    send_app::{
+        store_iter::store_iter,
+        store_wallet::store_wallet
+    }
 };
 
 pub fn clear() {
@@ -18,6 +21,8 @@ pub fn clear() {
     let content: [String;4] = ["".to_string(), "".to_string(), "pub const DATA: [&str;1] = [\"Ok\"];".to_string(), "pub const DATA: [&str;1] = [\"Ok\"];".to_string()];
     let clear_wallet: Vec<u8> = vec![1].iter().cloned().cycle().take(64).collect::<Vec<u8>>();
     store_wallet(clear_wallet).unwrap();
+    store_iter(true, 0).unwrap();
+    store_iter(false, 0).unwrap();
     for i in 0..4 {
         let file: File = OpenOptions::new().write(true).truncate(true).open(path[i].to_owned()).expect("Error");
         let mut write_file: File = file.try_clone().expect("Error");

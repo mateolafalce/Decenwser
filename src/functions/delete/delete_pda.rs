@@ -1,7 +1,5 @@
 /*
     - Remove the pdas by iterating one by one until leaving the html or js empty of content.
-
-    TODO: Give the option to increase speed in depreciated security
 */
 
 use anchor_client::{

@@ -4,7 +4,6 @@ fileInput.addEventListener("change", function (event) {
   var reader = new FileReader();
   reader.onload = async function () {
     let result = reader.result;
-    console.log(result);
     fetch("/store_wallet", {
       method: "POST",
       body: result,

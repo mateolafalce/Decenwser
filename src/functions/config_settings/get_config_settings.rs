@@ -4,16 +4,16 @@
 
 use anyhow::{Ok, Result};
 use rocket::serde::json::{Json, from_str};
-use crate::functions::constants::config::Config;
+use crate::functions::constants::state::State;
 use std::fs::read_to_string;
 
-pub fn get_config_settings() -> Result<Config> {
-    let contents: String = read_to_string("src/functions/config_settings/config.json").unwrap();
-    let config: Config = from_str(&contents).unwrap();
+pub fn get_config_settings() -> Result<State> {
+    let contents: String = read_to_string("state.json").unwrap();
+    let config: State = from_str(&contents).unwrap();
     Ok(config)
 }
 
 #[post("/")]
-pub fn index() -> Json<Config> {
+pub fn index() -> Json<State> {
     Json(get_config_settings().unwrap())
 }

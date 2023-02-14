@@ -6,14 +6,14 @@
 
 use anyhow::{Ok, Result};
 use rocket::serde::json::{from_str, to_string};
-use crate::functions::constants::domain::Domain;
+use crate::functions::constants::state::State;
 use std::fs::{write, read_to_string};
 
 pub fn store_domain(domain: String) -> Result<()> {
-    let contents: String = read_to_string("src/functions/constants/domain.json").unwrap();
-    let mut config: Domain = from_str(&contents).unwrap();
+    let contents: String = read_to_string("state.json").unwrap();
+    let mut config: State = from_str(&contents).unwrap();
     config.domain = domain;
-    write("src/functions/constants/domain.json", to_string(&config).unwrap()).unwrap();
+    write("state.json", to_string(&config).unwrap()).unwrap();
     Ok(())
 }
 

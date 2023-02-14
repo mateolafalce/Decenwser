@@ -17,17 +17,20 @@ use anchor_client::{
         },
     Client, Program
 };
-use anyhow::{Ok, Result};
+use anyhow::{Result};
 use decenwser::state::MainAccount;
 use rocket::serde::json::Json;
-use std::{rc::Rc, str::FromStr};
+use std::{result::Result::Ok, io::Error, rc::Rc, str::FromStr};
 use crate::functions::{
-    send_app::get_wallet::get_wallet,
+    send_app::{
+        store_iter::store_iter,
+        get_wallet::get_wallet
+    },
     config_settings::cluster::cluster,
     encode_output::{html, js}
 };
 
-pub fn send_app(web_name: String, html_js: String) {
+pub fn send_app(web_name: String, html_js: String) -> Result<(), Error> {
     let program: Program = Client::new(
         cluster().unwrap(),
         Rc::new(keypair_from_seed(&get_wallet()).expect("Example requires a keypair file")),
@@ -44,6 +47,7 @@ pub fn send_app(web_name: String, html_js: String) {
             ).program(Pubkey::from_str(&program_id::ID).unwrap());
             let main_account_pda: MainAccount = program.account(main_account).unwrap();
             send_html(main_account, main_account_pda, program, html::DATA[counter].to_string()).unwrap();
+            store_iter(true,counter as u16).unwrap();
             counter += 1;
         }
     }
@@ -56,9 +60,11 @@ pub fn send_app(web_name: String, html_js: String) {
             ).program(Pubkey::from_str(&program_id::ID).unwrap());
             let main_account_pda: MainAccount = program.account(main_account).unwrap();
             send_js(main_account, main_account_pda, program, js::DATA[counter].to_string()).unwrap();
+            store_iter(false,counter as u16).unwrap();
             counter += 1;
         }
     }
+    Ok(())
 }
 
 pub fn send_html(main_account: Pubkey, main_account_pda: MainAccount, program: Program, content: String) -> Result<()> {
@@ -109,5 +115,8 @@ pub fn send_js(main_account: Pubkey, main_account_pda: MainAccount, program: Pro
 }
 #[post("/", data = "<web_data>")]
 pub fn index(web_data: Json<Webdata>) {
-    send_app(web_data.web_name.clone(), web_data.html_js.clone())
+    match send_app(web_data.web_name.clone(), web_data.html_js.clone()) {
+        Ok(()) => println!("Account successfully sent to the solana blockchain"),
+        Err(error) => println!("The account cannot be sent to the blockchain. Error: {}", error),
+    }
 }
