@@ -1,3 +1,9 @@
+/*
+    -This function has the purpose of saving the iteration each time a transaction 
+    is successfully sent to the blockchain. It is used later to display the progress 
+    in the /convert progress bar.
+*/
+
 use anyhow::{Ok, Result};
 use rocket::serde::json::{from_str, to_string};
 use crate::functions::constants::state::State;

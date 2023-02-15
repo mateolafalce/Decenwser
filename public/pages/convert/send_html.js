@@ -10,13 +10,8 @@ html_button.addEventListener("click", function () {
         updateProgress(res.html_iter, res.max_html);
       });
   }, 25000);
-
-  var data = {
-    web_name: document.getElementById("init-domain").value,
-    html_js: "HTML",
-  };
   fetch("/send_app", {
     method: "POST",
-    body: JSON.stringify(data),
+    body: "HTML",
   }).catch((error) => console.log(error));
 });

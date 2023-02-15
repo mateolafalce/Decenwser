@@ -1,3 +1,10 @@
+/*
+    -This function is opened from js and requests the user's wallet to sign 
+    the app creation transactions and their respective html and js content 
+    submissions to the Solana blockchain. Subsequently, in the clear function, 
+    the local data is deleted
+*/
+
 use rocket::serde::json::from_str;
 use crate::functions::constants::state::State;
 use std::fs::read_to_string;

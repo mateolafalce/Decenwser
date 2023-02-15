@@ -1,3 +1,7 @@
+/*
+    -Internal function to get the domain in question
+*/
+
 use anyhow::{Ok, Result};
 use rocket::serde::json::from_str;
 use crate::functions::constants::state::State;

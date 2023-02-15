@@ -1,3 +1,7 @@
+/*
+    -Return the size saved in the json file to internal functions and frontend
+*/
+
 use anyhow::{Ok, Result};
 use rocket::serde::{Deserialize, Serialize, json::from_str};
 use crate::functions::constants::state::State;

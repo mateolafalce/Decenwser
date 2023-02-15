@@ -7,7 +7,9 @@ pub use delete::*;
 pub use store_app::*;
 pub use encode_output::*;
 pub use config_settings::*;
+pub use speed_send_app::*;
 
+pub mod speed_send_app;
 pub mod config_settings;
 pub mod encode_output;
 pub mod store_app;

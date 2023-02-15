@@ -13,3 +13,12 @@ function init_domain() {
       console.error("Error:", error);
     });
 }
+
+input.addEventListener("input", () => {
+  fetch("/store_domain", {
+    method: "POST",
+    body: input.value,
+  }).catch((error) => {
+    console.error("There was a problem:", error);
+  });
+});

@@ -12,12 +12,11 @@ use anchor_client::{
 };
 use anyhow::{Ok, Result};
 use decenwser::state::MainAccount;
-use rocket::serde::json::Json;
 use std::{rc::Rc, str::FromStr};
 use crate::functions::{
     send_app::get_wallet::get_wallet,
     get_page::get_domain::get_domain,
-    constants::{program_id, web_data::Webdata}
+    constants::program_id
 };
 
 pub fn delete_app(html_js: String) {
@@ -96,7 +95,7 @@ pub fn delete_js(main_account: Pubkey, main_account_pda: MainAccount, program: P
         .send()?;
     Ok(())
 }
-#[post("/", data = "<web_data>")]
-pub fn index(web_data: Json<Webdata>) {
-    delete_app(web_data.html_js.clone())
+#[post("/", data = "<html_js>")]
+pub fn index(html_js: String) {
+    delete_app(html_js)
 }

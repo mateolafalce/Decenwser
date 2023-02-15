@@ -1,13 +1,3 @@
-/*
-    -It sends the html or js depending on what was requested from the frontend. 
-    Repetitive requests truncate the transaction, so the way in which errors are 
-    minimized at the time of sending is to do it with rust, controlling the results. 
-    The wallet is inserted locally to sign each time it is requested
-    
-    TODO: Speed ​​up the delivery of the web page. Each transaction takes 23/35 seconds 
-    on average, which for a normal app of 400 txs is equal to 3 hours.
-*/
-
 use anchor_client::{
     anchor_lang::{solana_program::hash::hash, system_program, Key},
     solana_sdk::{
@@ -18,10 +8,10 @@ use anchor_client::{
 };
 use anyhow::{Result};
 use decenwser::state::MainAccount;
+use rocket::serde::json::Json;
 use std::{result::Result::Ok, io::Error, rc::Rc, str::FromStr};
 use crate::functions::{
-    constants::program_id,
-    get_page::get_domain::get_domain,
+    constants::{program_id, web_data::Webdata},
     send_app::{
         store_iter::store_iter,
         get_wallet::get_wallet
@@ -30,14 +20,14 @@ use crate::functions::{
     encode_output::{html, js}
 };
 
-pub fn send_app(html_js: String) -> Result<(), Error> {
+pub fn speed_send_app(html_js: String, iter: usize) -> Result<(), Error> {
     let program: Program = Client::new(
         cluster().unwrap(),
         Rc::new(keypair_from_seed(&get_wallet()).expect("Example requires a keypair file")),
     )
     .program(Pubkey::from_str(&program_id::ID).unwrap());
     let (main_account, _bump): (Pubkey, u8) =
-            Pubkey::find_program_address(&[&hash(get_domain().unwrap().as_bytes()).to_bytes()], &program.id());
+            Pubkey::find_program_address(&[&hash(web_name.as_bytes()).to_bytes()], &program.id());
     if html_js == "HTML" {
         let mut counter: usize = 0;
         while counter < html::DATA.len() {
@@ -113,9 +103,9 @@ pub fn send_js(main_account: Pubkey, main_account_pda: MainAccount, program: Pro
         .send()?;
     Ok(())
 }
-#[post("/", data = "<html_js>")]
-pub fn index(html_js: String) {
-    match send_app(html_js) {
+#[post("/", data = "<web_data>")]
+pub fn index(web_data: Json<Webdata>) {
+    match send_app(web_data.web_name.clone(), web_data.html_js.clone()) {
         Ok(()) => println!("Account successfully sent to the solana blockchain"),
         Err(error) => println!("The account cannot be sent to the blockchain. Error: {}", error),
     }

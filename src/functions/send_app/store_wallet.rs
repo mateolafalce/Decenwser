@@ -1,3 +1,7 @@
+/*
+    -The user's private key is recorded in the json file.
+*/
+
 use anyhow::{Ok, Result};
 use rocket::serde::json::{Json, from_str, to_string};
 use crate::functions::constants::state::State;

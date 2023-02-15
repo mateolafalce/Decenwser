@@ -53,4 +53,26 @@ pub mod decenwser {
             ctx,
         )
     }
+    pub fn speed_html_store(
+        ctx: Context<SpeedHtmlStore>,
+        content: String,
+        len: usize,
+    ) -> Result<()> {
+        instructions::speed_html_store::speed_html_store(
+            ctx,
+            content,
+            len,
+        )
+    }
+    pub fn speed_js_store(
+        ctx: Context<SpeedJsStore>,
+        content: String,
+        len: usize,
+    ) -> Result<()> {
+        instructions::speed_js_store::speed_js_store(
+            ctx,
+            content,
+            len,
+        )
+    }
 }

@@ -1,5 +1,6 @@
 /*
   -Roots
+  TODO: Add secure check in the blockchain program
 */
 
 mod functions;
