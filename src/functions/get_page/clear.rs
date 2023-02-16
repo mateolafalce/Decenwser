@@ -6,10 +6,12 @@
 
 use std::{
     io::{Write,Result}, 
-    fs::{OpenOptions, self, File},
+    fs::{OpenOptions, self, File, read_to_string, write},
     path::Path 
 };
+use rocket::serde::json::{to_string, from_str};
 use crate::functions::{
+    speed_send_app::signers::Signers,
     send_app::{
         store_iter::store_iter,
         store_wallet::store_wallet
@@ -23,6 +25,10 @@ pub fn clear() {
     store_wallet(clear_wallet).unwrap();
     store_iter(true, 0).unwrap();
     store_iter(false, 0).unwrap();
+    let signers: String = read_to_string("src/functions/speed_send_app/signers.json").unwrap();
+    let mut signers_clear: Signers = from_str(&signers).unwrap();
+    signers_clear.signers = vec![[].to_vec()];
+    write("src/functions/speed_send_app/signers.json", to_string(&signers_clear).unwrap()).unwrap();
     for i in 0..4 {
         let file: File = OpenOptions::new().write(true).truncate(true).open(path[i].to_owned()).expect("Error");
         let mut write_file: File = file.try_clone().expect("Error");
