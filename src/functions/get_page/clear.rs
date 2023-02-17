@@ -25,10 +25,14 @@ pub fn clear() {
     store_wallet(clear_wallet).unwrap();
     store_iter(true, 0).unwrap();
     store_iter(false, 0).unwrap();
-    let signers: String = read_to_string("src/functions/speed_send_app/signers.json").unwrap();
-    let mut signers_clear: Signers = from_str(&signers).unwrap();
-    signers_clear.signers = vec![[].to_vec()];
-    write("src/functions/speed_send_app/signers.json", to_string(&signers_clear).unwrap()).unwrap();
+    let html: String = read_to_string("src/functions/speed_send_app/html_signers.json").unwrap();
+    let mut html_signers: Signers = from_str(&html).unwrap();
+    html_signers.signers = vec![];
+    write("src/functions/speed_send_app/html_signers.json", to_string(&html_signers).unwrap()).unwrap();
+    let js: String = read_to_string("src/functions/speed_send_app/js_signers.json").unwrap();
+    let mut js_signers: Signers = from_str(&js).unwrap();
+    js_signers.signers = vec![];
+    write("src/functions/speed_send_app/js_signers.json", to_string(&js_signers).unwrap()).unwrap();
     for i in 0..4 {
         let file: File = OpenOptions::new().write(true).truncate(true).open(path[i].to_owned()).expect("Error");
         let mut write_file: File = file.try_clone().expect("Error");

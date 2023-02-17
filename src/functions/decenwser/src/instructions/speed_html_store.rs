@@ -11,7 +11,7 @@ pub fn speed_html_store(
     len: usize
 ) -> Result<()> {
     require!(ctx.accounts.main_account.len <= 9984, ErrorCode::TooLong);
-    require!(ctx.accounts.main_account.authority.key() == ctx.accounts.signer.key(), ErrorCode::AuthorityError);
+    //require!(ctx.accounts.main_account.authority.key() == ctx.accounts.signer.key(), ErrorCode::AuthorityError);
     let (_pda, bump) = Pubkey::find_program_address(&[b"HTML", len.to_le_bytes().as_ref(), ctx.accounts.main_account.key().as_ref()], ctx.program_id);
     let main_account: &mut Account<MainAccount> = &mut ctx.accounts.main_account;
     let store: &mut Account<StoreAccount> = &mut ctx.accounts.store;

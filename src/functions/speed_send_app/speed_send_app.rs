@@ -1,5 +1,5 @@
 use anchor_client::{
-    anchor_lang::{solana_program::hash::hash},
+    anchor_lang::{solana_program::hash::hash, system_program, Key},
     solana_sdk::{
         pubkey::Pubkey,
         signature::{keypair_from_seed},
@@ -14,11 +14,6 @@ use crate::functions::{
     speed_send_app::signers::Signers,
     constants::program_id,
     get_page::get_domain::get_domain,
-    send_app::{
-        send_app::send_html,
-        send_app::send_js,
-        store_iter::store_iter,
-    },
     config_settings::cluster::cluster,
     encode_output::{html, js}
 };
@@ -31,24 +26,78 @@ pub struct Webdata {
 }
 
 pub fn speed_send_app(html_js: String, iter: usize) -> Result<(), Error> {
-    let contents: String = read_to_string("src/functions/speed_send_app/signers.json").unwrap();
-    let signers: Signers = from_str(&contents).unwrap();
-    let program: Program = Client::new(
-        cluster().unwrap(),
-        Rc::new(keypair_from_seed(&signers.signers[iter]).expect("Example requires a keypair file")),
-    )
-    .program(Pubkey::from_str(&program_id::ID).unwrap());
-    let (main_account, _bump): (Pubkey, u8) =
-            Pubkey::find_program_address(&[&hash(get_domain().unwrap().as_bytes()).to_bytes()], &program.id());
+    let html: String = read_to_string("src/functions/speed_send_app/html_signers.json").unwrap();
+    let html_signers: Signers = from_str(&html).unwrap();
+    let js: String = read_to_string("src/functions/speed_send_app/js_signers.json").unwrap();
+    let js_signers: Signers = from_str(&js).unwrap();
     if html_js == "HTML" {
-        let main_account_pda: MainAccount = program.account(main_account).unwrap();
-        send_html(main_account, main_account_pda, program, html::DATA[iter].to_string()).unwrap();
-        store_iter(true,iter as u16).unwrap();
-    }else {
-        let main_account_pda: MainAccount = program.account(main_account).unwrap();
-        send_js(main_account, main_account_pda, program, js::DATA[iter].to_string()).unwrap();
-        store_iter(false,iter as u16).unwrap();
+        let program: Program = Client::new(
+            cluster().unwrap(),
+            Rc::new(keypair_from_seed(&html_signers.signers[iter]).expect("Example requires a keypair file")),
+        )
+        .program(Pubkey::from_str(&program_id::ID).unwrap());
+        let (main_account, _bump): (Pubkey, u8) =
+                Pubkey::find_program_address(&[&hash(get_domain().unwrap().as_bytes()).to_bytes()], &program.id());
+        send_html(main_account, program, html::DATA[iter].to_string(), iter).unwrap();
+    } else if html_js == "JS" {
+        let program: Program = Client::new(
+            cluster().unwrap(),
+            Rc::new(keypair_from_seed(&js_signers.signers[iter]).expect("Example requires a keypair file")),
+        )
+        .program(Pubkey::from_str(&program_id::ID).unwrap());
+        let (main_account, _bump): (Pubkey, u8) =
+                Pubkey::find_program_address(&[&hash(get_domain().unwrap().as_bytes()).to_bytes()], &program.id());
+        send_js(main_account, program, js::DATA[iter].to_string(), iter).unwrap();
     }
+    Ok(())
+}
+
+pub fn send_html(main_account: Pubkey, program: Program, content: String, len:usize) -> Result<()> {
+    let (store, _bump): (Pubkey, u8) = Pubkey::find_program_address(
+        &[
+            b"HTML", 
+            (len as usize).to_le_bytes().as_ref(), 
+            main_account.key().as_ref()
+        ],
+        &program.id(),
+    );
+    program
+        .request()
+        .args(decenwser::instruction::SpeedHtmlStore { 
+            content: content,
+            len: len,
+        })
+        .accounts(decenwser::accounts::SpeedHtmlStore {
+            main_account,
+            store,
+            signer: program.payer(),
+            system_program: system_program::ID,
+        })
+        .send()?;
+    Ok(())
+}
+pub fn send_js(main_account: Pubkey, program: Program, content: String, len: usize) -> Result<()> {
+    let (store, _bump): (Pubkey, u8) = Pubkey::find_program_address(
+        &[
+            b"JS", 
+            (len as usize).to_le_bytes().as_ref(), 
+            main_account.key().as_ref()
+        ],
+        &program.id(),
+    );
+    program
+        .request()
+        .args(decenwser::instruction::SpeedJsStore { 
+            content: content,
+            len: len,
+        })
+        .accounts(decenwser::accounts::SpeedJsStore {
+            main_account,
+            store,
+            signer: program.payer(),
+            system_program: system_program::ID,
+        })
+        .send()?;
     Ok(())
 }
 

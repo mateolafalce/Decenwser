@@ -13,7 +13,7 @@ use functions::{
     get_page::{store_len, get_page, clear, store_domain}, 
     create_app::create_app, 
     send_app::{send_app, store_wallet, get_iter},
-    speed_send_app::{create_signers, speed_send_app},
+    speed_send_app::{create_signers, speed_send_app, send_sol_to_signers},
     store_app::store_app, 
     delete::{delete_pda, delete_stored_app},
     config_settings::{get_config_settings, modify_network},
@@ -44,6 +44,7 @@ Command::new("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
         .mount("/get_page", routes![get_page::index])
         .mount("/store_app", routes![store_app::index])
         .mount("/create_signers", routes![create_signers::index])
+        .mount("/send_sol_to_signers", routes![send_sol_to_signers::index])
         .mount("/speed_send_app", routes![speed_send_app::index])
         .mount("/delete_stored_app", routes![delete_stored_app::index])
         .mount("/main", routes![convert_page::index])

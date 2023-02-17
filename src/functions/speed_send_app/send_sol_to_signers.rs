@@ -6,16 +6,8 @@ use crate::functions::{
     send_app::get_wallet::get_wallet,
 };
 use anchor_client::{
-    anchor_lang::{
-        solana_program::{
-            program::invoke,
-            system_instruction::transfer
-        },
-    },
     solana_sdk::{
-        account::Account,
-        account_info::AccountInfo,
-        instruction::Instruction, 
+        system_transaction::transfer,
         pubkey::Pubkey, 
         signature::{
             keypair_from_seed, 
@@ -27,55 +19,49 @@ use anchor_client::{
 };
 use anyhow::{Result, Ok};
 use rocket::serde::json::from_str;
-use std::{rc::Rc, str::FromStr, fs::read_to_string, cell::RefCell};
+use std::{rc::Rc, str::FromStr, fs::read_to_string};
 
 pub fn send_sol_to_signers(html_js: String) -> Result<()> {
-    let contents: String = read_to_string("src/functions/speed_send_app/signers.json").unwrap();
-    let signers: Signers = from_str(&contents).unwrap();
+    let html: String = read_to_string("src/functions/speed_send_app/html_signers.json").unwrap();
+    let html_signers: Signers = from_str(&html).unwrap();
+    let js: String = read_to_string("src/functions/speed_send_app/js_signers.json").unwrap();
+    let js_signers: Signers = from_str(&js).unwrap();
     let amount: u64 = 7452200;
     let program: Program = Client::new(
         cluster().unwrap(),
         Rc::new(keypair_from_seed(&get_wallet()).expect("Example requires a keypair file")),
     )
     .program(Pubkey::from_str(&program_id::ID).unwrap());
-    let mut user_data: Account = program.rpc().get_account(
-        &keypair_from_seed(&get_wallet()).unwrap().pubkey()
-    ).unwrap();
-    let account_info_user: AccountInfo = AccountInfo {
-        key: &user_data.owner,
-        is_signer: true,
-        is_writable: true,
-        data: Rc::new(RefCell::new(&mut user_data.data)),
-        lamports: Rc::new(RefCell::new(&mut user_data.lamports)),
-        owner: &user_data.owner,
-        executable: user_data.executable,
-        rent_epoch: user_data.rent_epoch,
-    };
     let mut counter: usize = 0;
     if html_js == "HTML" {
         while counter < html::DATA.len() {
-            let keypair: Keypair = keypair_from_seed(&signers.signers[counter]).unwrap();
-            let signer_data: Account = program.rpc().get_account(&keypair.pubkey()).unwrap();
-            let owner_rc = Rc::new(signer_data.owner.clone());
-            let account_info_signer: AccountInfo = AccountInfo {
-                key: &owner_rc,
-                is_signer: false,
-                is_writable: true,
-                data: Rc::new(RefCell::new(&mut signer_data.data.clone())),
-                lamports: Rc::new(RefCell::new(&mut signer_data.lamports.clone())),
-                owner: &owner_rc,
-                executable: signer_data.executable.clone(),
-                rent_epoch: signer_data.rent_epoch.clone(),
-            };
-            invoke( 
-                &transfer(&program.payer(), &keypair.pubkey(), amount),
-                &[account_info_user.clone(), account_info_signer.clone()]
+            let keypair: Keypair = keypair_from_seed(&html_signers.signers[counter]).unwrap();
+            let transfer = transfer(
+                &keypair_from_seed(&get_wallet()).unwrap(), 
+                &keypair.pubkey(), 
+                amount, 
+                program.rpc().get_latest_blockhash()?
             );
+            program.rpc().send_and_confirm_transaction(&transfer)?;
             counter += 1;
         }
-    } /*else {
-
-      }*/
-
+    } else if html_js == "JS" {
+        while counter < js::DATA.len() {
+            let keypair: Keypair = keypair_from_seed(&js_signers.signers[counter]).unwrap();
+            let transfer = transfer(
+                &keypair_from_seed(&get_wallet()).unwrap(), 
+                &keypair.pubkey(), 
+                amount, 
+                program.rpc().get_latest_blockhash()?
+            );
+            program.rpc().send_and_confirm_transaction(&transfer)?;
+            counter += 1;
+        }
+    }
     Ok(())
+}
+
+#[post("/", data = "<html_js>")]
+pub fn index(html_js: String) {
+    send_sol_to_signers(html_js).unwrap()
 }
