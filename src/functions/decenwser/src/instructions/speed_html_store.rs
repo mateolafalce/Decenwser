@@ -7,23 +7,23 @@ use crate::error::ErrorCode;
 
 pub fn speed_html_store(
     ctx: Context<SpeedHtmlStore>,
+    len: u16,
     content: String,
-    len: usize
 ) -> Result<()> {
     require!(ctx.accounts.main_account.len <= 9984, ErrorCode::TooLong);
     //require!(ctx.accounts.main_account.authority.key() == ctx.accounts.signer.key(), ErrorCode::AuthorityError);
-    let (_pda, bump) = Pubkey::find_program_address(&[b"HTML", len.to_le_bytes().as_ref(), ctx.accounts.main_account.key().as_ref()], ctx.program_id);
+    let (_pda, bump) = Pubkey::find_program_address(&[b"HTML", (len as usize).to_le_bytes().as_ref(), ctx.accounts.main_account.key().as_ref()], ctx.program_id);
     let main_account: &mut Account<MainAccount> = &mut ctx.accounts.main_account;
     let store: &mut Account<StoreAccount> = &mut ctx.accounts.store;
     store.content = content;
     store.bump_original = bump;
-    main_account.html.push((len + 1) as u16);
+    main_account.html.push(len + 1);
     main_account.len += 2;
     Ok(())
 }
 
 #[derive(Accounts)]
-#[instruction(len: usize)]
+#[instruction(len: u16)]
 pub struct SpeedHtmlStore<'info> {
     #[account(
         mut,
@@ -37,7 +37,7 @@ pub struct SpeedHtmlStore<'info> {
     #[account(init, seeds = 
         [
         b"HTML", 
-        len.to_le_bytes().as_ref(), 
+        (len as usize).to_le_bytes().as_ref(), 
         main_account.key().as_ref()
         ], 
     bump, payer = signer, 

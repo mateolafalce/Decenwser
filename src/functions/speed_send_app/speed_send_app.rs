@@ -7,7 +7,6 @@ use anchor_client::{
     Client, Program
 };
 use anyhow::{Result};
-use decenwser::state::MainAccount;
 use rocket::serde::{Deserialize, Serialize, json::{Json,from_str}};
 use std::{result::Result::Ok, io::Error, rc::Rc, str::FromStr, fs::read_to_string};
 use crate::functions::{
@@ -22,10 +21,10 @@ use crate::functions::{
 #[serde(crate = "rocket::serde")]
 pub struct Webdata {
     pub html_js: String,
-    pub iter: usize,
+    pub iter: u16,
 }
 
-pub fn speed_send_app(html_js: String, iter: usize) -> Result<(), Error> {
+pub fn speed_send_app(html_js: String, iter: u16) -> Result<(), Error> {
     let html: String = read_to_string("src/functions/speed_send_app/html_signers.json").unwrap();
     let html_signers: Signers = from_str(&html).unwrap();
     let js: String = read_to_string("src/functions/speed_send_app/js_signers.json").unwrap();
@@ -33,26 +32,26 @@ pub fn speed_send_app(html_js: String, iter: usize) -> Result<(), Error> {
     if html_js == "HTML" {
         let program: Program = Client::new(
             cluster().unwrap(),
-            Rc::new(keypair_from_seed(&html_signers.signers[iter]).expect("Example requires a keypair file")),
+            Rc::new(keypair_from_seed(&html_signers.signers[iter as usize]).expect("Example requires a keypair file")),
         )
         .program(Pubkey::from_str(&program_id::ID).unwrap());
         let (main_account, _bump): (Pubkey, u8) =
                 Pubkey::find_program_address(&[&hash(get_domain().unwrap().as_bytes()).to_bytes()], &program.id());
-        send_html(main_account, program, html::DATA[iter].to_string(), iter).unwrap();
+        send_html(main_account, program, html::DATA[iter as usize].to_string(), iter).unwrap();
     } else if html_js == "JS" {
         let program: Program = Client::new(
             cluster().unwrap(),
-            Rc::new(keypair_from_seed(&js_signers.signers[iter]).expect("Example requires a keypair file")),
+            Rc::new(keypair_from_seed(&js_signers.signers[iter as usize]).expect("Example requires a keypair file")),
         )
         .program(Pubkey::from_str(&program_id::ID).unwrap());
         let (main_account, _bump): (Pubkey, u8) =
                 Pubkey::find_program_address(&[&hash(get_domain().unwrap().as_bytes()).to_bytes()], &program.id());
-        send_js(main_account, program, js::DATA[iter].to_string(), iter).unwrap();
+        send_js(main_account, program, js::DATA[iter as usize].to_string(), iter).unwrap();
     }
     Ok(())
 }
 
-pub fn send_html(main_account: Pubkey, program: Program, content: String, len:usize) -> Result<()> {
+pub fn send_html(main_account: Pubkey, program: Program, content: String, len: u16) -> Result<()> {
     let (store, _bump): (Pubkey, u8) = Pubkey::find_program_address(
         &[
             b"HTML", 
@@ -63,20 +62,20 @@ pub fn send_html(main_account: Pubkey, program: Program, content: String, len:us
     );
     program
         .request()
-        .args(decenwser::instruction::SpeedHtmlStore { 
-            content: content,
-            len: len,
-        })
         .accounts(decenwser::accounts::SpeedHtmlStore {
             main_account,
             store,
             signer: program.payer(),
             system_program: system_program::ID,
         })
+        .args(decenwser::instruction::SpeedHtmlStore { 
+            content: content,
+            len: len,
+        })
         .send()?;
     Ok(())
 }
-pub fn send_js(main_account: Pubkey, program: Program, content: String, len: usize) -> Result<()> {
+pub fn send_js(main_account: Pubkey, program: Program, content: String, len: u16) -> Result<()> {
     let (store, _bump): (Pubkey, u8) = Pubkey::find_program_address(
         &[
             b"JS", 
@@ -87,15 +86,15 @@ pub fn send_js(main_account: Pubkey, program: Program, content: String, len: usi
     );
     program
         .request()
-        .args(decenwser::instruction::SpeedJsStore { 
-            content: content,
-            len: len,
-        })
         .accounts(decenwser::accounts::SpeedJsStore {
             main_account,
             store,
             signer: program.payer(),
             system_program: system_program::ID,
+        })
+        .args(decenwser::instruction::SpeedJsStore { 
+            content: content,
+            len: len,
         })
         .send()?;
     Ok(())

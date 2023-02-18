@@ -1,6 +1,6 @@
 /*
     -Modifies the network from Mainnet to Devnet or vice versa. 
-    Confi.json is used to store the state
+    Config.json is used to store the state
 */
 
 use anyhow::{Ok, Result};
