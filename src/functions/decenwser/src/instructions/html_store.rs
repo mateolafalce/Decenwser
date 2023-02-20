@@ -1,3 +1,8 @@
+/*
+    -Save html content on the web. This saving is consecutive and only 
+    the private key of the authority can sign the transactions.
+*/
+
 use anchor_lang::{
     prelude::*,
     solana_program::pubkey::Pubkey

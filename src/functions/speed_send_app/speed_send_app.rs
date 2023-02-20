@@ -1,3 +1,7 @@
+/*
+    -Send the web at high speed. Iterates from the frontend to sign the 
+    different transactions.
+*/
 use anchor_client::{
     anchor_lang::{solana_program::hash::hash, system_program, Key},
     solana_sdk::{

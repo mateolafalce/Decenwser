@@ -1,3 +1,13 @@
+/*
+    -In this instruction the web account is created where the bump, the admin pubkey, 
+    the domain, the html and the js are stored. The secure check has the function of 
+    validating or not future updates of the web code. By default it remains false so 
+    that any signer can send their app to the blockchain and then close the secure 
+    check to avoid modifications. In the event that the user wishes from the beginning 
+    to change the status to true to sign only it and all the transactions consecutively, 
+    it can be updated with the function modify_secure_check()
+*/
+
 use anchor_lang::{
     prelude::*,
     solana_program::pubkey::Pubkey
@@ -18,6 +28,7 @@ pub fn main_account(
     main_account.html = [].to_vec();
     main_account.js = [].to_vec();
     main_account.len = 83;
+    main_account.secure_check = false;
     Ok(())
 }
 

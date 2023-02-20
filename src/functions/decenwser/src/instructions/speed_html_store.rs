@@ -1,3 +1,8 @@
+/*
+    -Save the html content to the web. It uses different signers so it makes 
+    the upload much faster.
+*/
+
 use anchor_lang::{
     prelude::*,
     solana_program::pubkey::Pubkey
@@ -10,8 +15,8 @@ pub fn speed_html_store(
     len: u16,
     content: String,
 ) -> Result<()> {
+    require!(ctx.accounts.main_account.secure_check == false, ErrorCode::SecureCheckError);
     require!(ctx.accounts.main_account.len <= 9984, ErrorCode::TooLong);
-    //require!(ctx.accounts.main_account.authority.key() == ctx.accounts.signer.key(), ErrorCode::AuthorityError);
     let (_pda, bump) = Pubkey::find_program_address(&[b"HTML", (len as usize).to_le_bytes().as_ref(), ctx.accounts.main_account.key().as_ref()], ctx.program_id);
     let main_account: &mut Account<MainAccount> = &mut ctx.accounts.main_account;
     let store: &mut Account<StoreAccount> = &mut ctx.accounts.store;

@@ -17,47 +17,41 @@ use rocket::serde::{json::Json, Deserialize, Serialize};
 use std::{rc::Rc, str::FromStr};
 use crate::functions::{
     send_app::get_wallet::get_wallet,
+    get_page::get_domain::get_domain,
     config_settings::cluster::cluster,
     constants::program_id
 };
 
-
 #[derive(Debug, Deserialize, Serialize)]
 #[serde(crate = "rocket::serde")]
-pub struct AppCreated {
+pub struct SecureCheck {
     pub tx: String,
-    pub pda: String,
 }
 
-pub fn create_app(web_name: String) -> Result<AppCreated> {
+pub fn modify_secure_check() -> Result<SecureCheck> {
     let program: Program = Client::new(
         cluster().unwrap(),
         Rc::new(keypair_from_seed(&get_wallet()).expect("Example requires a keypair file")),
     )
     .program(Pubkey::from_str(&program_id::ID).unwrap());
-    Ok(create_app_tx(&program, web_name).unwrap())
-}
-
-pub fn create_app_tx(program: &Program, web_name: String) -> Result<AppCreated> {
     let (main_account, _bump): (Pubkey, u8) =
-        Pubkey::find_program_address(&[&hash(web_name.as_bytes()).to_bytes()], &program.id());
+        Pubkey::find_program_address(&[&hash(&get_domain().unwrap().as_bytes()).to_bytes()], &program.id());
     let tx: Signature = program
         .request()
-        .accounts(decenwser::accounts::MainAccountStruct {
+        .accounts(decenwser::accounts::ModifySecureCheck {
             main_account: main_account,
             signer: program.payer(),
             system_program: system_program::ID,
         })
-        .args(decenwser::instruction::MainAccount { web_name })
+        .args(decenwser::instruction::ModifySecureCheck {})
         .send()?;
-    let output: AppCreated = AppCreated {
+    let output: SecureCheck = SecureCheck {
         tx: tx.to_string(),
-        pda: main_account.to_string(),
     };
     Ok(output)
 }
 
-#[post("/", data = "<web_name>")]
-pub fn index(web_name: String) -> Json<AppCreated> {
-    Json(create_app(web_name).unwrap())
+#[post("/")]
+pub fn index() -> Json<SecureCheck> {
+    Json(modify_secure_check().unwrap())
 }

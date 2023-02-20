@@ -1,6 +1,7 @@
 /*
   -Roots
-  TODO: Add secure check in the blockchain program
+  TODO: Document it
+  TODO: Create an admin account of the web
 */
 
 mod functions;
@@ -10,8 +11,8 @@ mod pages;
 extern crate rocket;
 use functions::{
     encode::encode, 
-    get_page::{store_len, get_page, clear, store_domain}, 
-    create_app::create_app, 
+    get_page::{store_len, get_page, clear, store_domain, store_pdas}, 
+    create_app::{create_app, modify_secure_check}, 
     send_app::{send_app, store_wallet, get_iter},
     speed_send_app::{create_signers, speed_send_app, send_sol_to_signers},
     store_app::store_app, 
@@ -38,6 +39,7 @@ Command::new("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
         .mount("/main", routes![web::index])
         .mount("/encode", routes![encode::index])
         .mount("/get_iter", routes![get_iter::index])
+        .mount("/store_pdas", routes![store_pdas::index])
         .mount("/store_wallet", routes![store_wallet::index])
         .mount("/store_domain", routes![store_domain::index])
         .mount("/get_len", routes![store_len::index])
@@ -49,6 +51,7 @@ Command::new("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
         .mount("/delete_stored_app", routes![delete_stored_app::index])
         .mount("/main", routes![convert_page::index])
         .mount("/create_app", routes![create_app::index])
+        .mount("/modify_secure_check", routes![modify_secure_check::index])
         .mount("/delete_pda", routes![delete_pda::index])
         .mount("/send_app", routes![send_app::index])
         .mount("/", FileServer::from(relative!("/public")))

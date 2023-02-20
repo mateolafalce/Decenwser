@@ -3,9 +3,6 @@
     Repetitive requests truncate the transaction, so the way in which errors are 
     minimized at the time of sending is to do it with rust, controlling the results. 
     The wallet is inserted locally to sign each time it is requested
-    
-    TODO: Speed ​​up the delivery of the web page. Each transaction takes 23/35 seconds 
-    on average, which for a normal app of 400 txs is equal to 3 hours.
 */
 
 use anchor_client::{

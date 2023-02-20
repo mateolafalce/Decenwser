@@ -75,4 +75,11 @@ pub mod decenwser {
             content,
         )
     }
+    pub fn modify_secure_check(
+        ctx: Context<ModifySecureCheck>
+    ) -> Result<()> {
+        instructions::modify_secure_check::modify_secure_check(
+            ctx
+        )
+    }
 }

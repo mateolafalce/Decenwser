@@ -11,6 +11,7 @@ use std::{
 };
 use rocket::serde::json::{to_string, from_str};
 use crate::functions::{
+    constants::pdas::Pdas,
     speed_send_app::signers::Signers,
     send_app::{
         store_iter::store_iter,
@@ -33,6 +34,12 @@ pub fn clear() {
     let mut js_signers: Signers = from_str(&js).unwrap();
     js_signers.signers = vec![];
     write("src/functions/speed_send_app/js_signers.json", to_string(&js_signers).unwrap()).unwrap();
+    let mut html_pda: Pdas = from_str(&read_to_string("src/functions/get_page/html_pdas.json").unwrap()).unwrap();
+    html_pda.pdas = vec![];
+    write("src/functions/get_page/html_pdas.json", to_string(&html_pda).unwrap()).unwrap();
+    let mut js_pda: Pdas = from_str(&read_to_string("src/functions/get_page/js_pdas.json").unwrap()).unwrap();
+    js_pda.pdas = vec![];
+    write("src/functions/get_page/js_pdas.json", to_string(&js_pda).unwrap()).unwrap();
     for i in 0..4 {
         let file: File = OpenOptions::new().write(true).truncate(true).open(path[i].to_owned()).expect("Error");
         let mut write_file: File = file.try_clone().expect("Error");

@@ -7,17 +7,16 @@
 */
 
 use anchor_client::{
-    anchor_lang::{solana_program::hash::hash, Key},
     solana_sdk::{pubkey::Pubkey, signature::Keypair},
     Client, Program,
 };
 use anyhow::{Result, Ok};
-use rocket::serde::{Deserialize, Serialize, json::Json};
+use rocket::serde::{Deserialize, Serialize, json::{Json, from_str}};
 use std::{ 
     rc::Rc, str::FromStr, 
     fs, 
     io::Write, 
-    fs::{OpenOptions, File}, 
+    fs::{OpenOptions, File, read_to_string}, 
     path::Path
 };
 use decenwser::state::StoreAccount;
@@ -27,7 +26,7 @@ use crate::functions::{
         get_len::get_len,
         get_domain::get_domain
     },
-    constants::program_id
+    constants::{program_id, pdas::Pdas}
 };
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -51,11 +50,9 @@ pub async fn get_page(html_js: String, iter: u16) {
     } else {
         let program_id: Pubkey =
             Pubkey::from_str(&program_id::ID).unwrap();
-        let (pda, _bump) =
-            Pubkey::find_program_address(&[&hash(&get_domain().unwrap().as_bytes()).to_bytes()], &program_id);
         let client: Client = Client::new(cluster().unwrap(), Rc::new(Keypair::new()));
         let program: Program = client.program(program_id);
-        let content: String = request(html_js.clone(), iter as usize, program_id, program, pda.clone()).unwrap().replace("#~", "\"").replace("#&", "\\").replace("#!", ",");
+        let content: String = request(html_js.clone(), iter as usize, program).unwrap().replace("#~", "\"").replace("#&", "\\").replace("#!", ",");
         slice_app(html_js,content,iter)
  }
 }
@@ -80,24 +77,16 @@ pub fn slice_app(html_js: String, content:String, iter:u16){
     }
 }
 
-pub fn request(html_js:String, iter: usize, program_id: Pubkey, program: Program, pda:Pubkey) -> Result<String> {
+pub fn request(html_js:String, iter: usize, program: Program) -> Result<String> {
     if html_js == "HTML" {
-        let (pbk, _bump): (Pubkey, u8) =
-        Pubkey::find_program_address(&[
-            b"HTML",
-            iter.to_le_bytes().as_ref(),
-            pda.key().as_ref(),
-            ], &program_id);
-        let html: StoreAccount = program.account(pbk)?;
+        let html_pda: Pdas = from_str(&read_to_string("src/functions/get_page/html_pdas.json").unwrap()).unwrap();
+        let pda: Pubkey = Pubkey::from_str(&html_pda.pdas[iter]).unwrap();
+        let html: StoreAccount = program.account(pda)?;
         return Ok(html.content)
     } else {
-        let (pbk, _bump): (Pubkey, u8) =
-        Pubkey::find_program_address(&[
-            b"JS",
-            iter.to_le_bytes().as_ref(),
-            pda.key().as_ref(),
-            ], &program_id);
-        let js: StoreAccount = program.account(pbk)?;
+        let js_pda: Pdas = from_str(&read_to_string("src/functions/get_page/js_pdas.json").unwrap()).unwrap();
+        let pda: Pubkey = Pubkey::from_str(&js_pda.pdas[iter]).unwrap();
+        let js: StoreAccount = program.account(pda)?;
         return Ok(js.content)
     }
 }

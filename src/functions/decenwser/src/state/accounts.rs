@@ -7,7 +7,8 @@ pub struct MainAccount {
     pub web_name: String,       // 4 + 32
     pub html: Vec<u16>,         // 4 + 2
     pub js: Vec<u16>,           // 4 + 2
-    pub len: u16                // 2
+    pub len: u16,               // 2
+    pub secure_check: bool      // 1
 }
 #[account]
 pub struct StoreAccount {
@@ -15,7 +16,7 @@ pub struct StoreAccount {
     pub bump_original: u8   // 1
 }
 impl MainAccount {
-    pub const SIZE: usize = 1 + 32 + 4 + 32 + (( 4 + 2 )*2) + 2;
+    pub const SIZE: usize = 1 + 32 + 4 + 32 + (( 4 + 2 )*2) + 2 + 1;
 }
 impl StoreAccount {
     pub const SIZE: usize = 931 + 1;

@@ -5,7 +5,7 @@ pub fn index() -> Template {
     Template::render(
         "main",
         context! {
-            foo: 123,
+            title: "Decenwser",
         }
     )
 }

@@ -1,3 +1,9 @@
+/*
+    -This function deletes the content that exists on the pda and returns 
+    all the SOL to the respective authority. After doing that, the account 
+    is closed.
+*/
+
 use anchor_lang::{
     prelude::*,
     solana_program::pubkey::Pubkey

@@ -1,3 +1,6 @@
+/*
+    -Create in the respective json file a list of wallets with private keys
+*/
 use anchor_client::solana_sdk::signature::Keypair;
 use rocket::serde::{
     json::{
