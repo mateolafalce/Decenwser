@@ -170,7 +170,7 @@ pub struct MainAccountStruct<'info> {
 
 ![inputs-main](/public/img/inputs-main.PNG)
 ![create-account-main](/public/img/create-account-main.PNG)
-![main-accounts-logs](/public/img/main-accounts-logs.PNG)
+![main-account-logs](/public/img/main-account-logs.PNG)
 
 ---
 
@@ -337,6 +337,73 @@ pub struct AddHtml<'info> {
 
 <br>
 
+<h3 id="delete"> delete_html() & delete_js()</h3>
+
+```rust
+use anchor_lang::{
+    prelude::*,
+    solana_program::pubkey::Pubkey
+};
+use crate::state::accounts::*;
+use crate::error::ErrorCode;
+
+pub fn delete_html(
+    ctx: Context<DeleteHtml>
+) -> Result<()> {
+    require!(ctx.accounts.main_account.authority.key() == ctx.accounts.signer.key(), ErrorCode::AuthorityError);
+    let lamport: u64 = ctx.accounts.account.to_account_info().lamports() - 890880;
+    let main_account: &mut Account<MainAccount> = &mut ctx.accounts.main_account;
+    main_account.html -= 1;
+    **ctx.accounts.account.to_account_info().try_borrow_mut_lamports()? -= lamport;
+    **ctx.accounts.signer.to_account_info().try_borrow_mut_lamports()? += lamport;
+    msg!(
+        "{} account removes HTML content and removes {} lamports from {} account",
+        ctx.accounts.signer.key(),
+        lamport,
+        ctx.accounts.account.key()
+    );
+    Ok(())
+}
+#[derive(Accounts)]
+pub struct DeleteHtml<'info> {
+    #[account(
+        mut,
+        seeds = [
+            &anchor_lang::solana_program::hash::hash(
+                main_account.web_name.as_bytes()
+            ).to_bytes()
+        ],
+        bump = main_account.bump_original
+    )]
+    pub main_account: Account<'info, MainAccount>,
+    #[account(
+        mut,
+        seeds = [
+            b"HTML",
+            (main_account.html - 1).to_le_bytes().as_ref(),
+            main_account.key().as_ref()
+        ],
+        bump = account.bump_original,
+        close = signer
+    )]
+    pub account: Account<'info, StoreAccount>,
+    #[account(mut)]
+    pub signer: Signer<'info>,
+    pub system_program: Program<'info, System>,
+}
+```
+
+<p>This function deletes the content of the PDA and returns the SOL to the creator. The function verifies that the signer is the authority, then obtains the SOL from the account and proceeds to remove the lamports from the PDA. Finally, a message is issued disclosing the data used to delete that account
+</p>
+
+![delete-input](/public/img/delete-input.PNG)
+![delete-accounts](/public/img/delete-accounts.PNG)
+![delete-logs](/public/img/delete-logs.PNG)
+
+---
+
+<br>
+
 <h1 id="decenwser-index">Decenwser Browser</h1>
 
 <p>In this section they will analyze all aspects related to the operation of the browser. We will talk about the justification of the general development framework and its performance.</p>
@@ -359,6 +426,6 @@ This takes the speed for each pda fetched from the blockchain and rendered in th
 | 0.2.3   | 343.09 ms  |
 | 0.2.4   | 108.26 ms  |
 
-> The current architecture is the one implemented in version 0.2.4, which came to solve a problem of iterational volume with the PDAs at the time of rendering, together with the fact that they stopped passing strings, instead passing bytes.
-
 </div>
+
+> The current architecture is the one implemented in version 0.2.4, which came to solve a problem of iterational volume with the PDAs at the time of rendering, together with the fact that they stopped passing strings, instead passing bytes.

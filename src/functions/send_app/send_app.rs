@@ -126,7 +126,7 @@ pub fn send_app(html_js: String) -> Result<(), Error> {
                     let main_account_pda: MainAccount = program.account(main_account).unwrap();
                     js_store(main_account, main_account_pda, program, js_len.content[counter].to_vec()).unwrap();
                     println!("Successfully sent to the solana blockchain[{}]", counter);
-                    store_iter(true).unwrap();
+                    store_iter(false).unwrap();
                     counter += 1;
              } else {
                 if js_len.content.len() == 1{

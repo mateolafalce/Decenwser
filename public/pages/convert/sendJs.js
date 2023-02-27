@@ -1,7 +1,7 @@
 var js_button = document.getElementById("js-button");
 
 js_button.addEventListener("click", function () {
-  const interval = setInterval(() => {
+  setInterval(() => {
     fetch("/get_iter", {
       method: "POST",
     })
@@ -13,16 +13,5 @@ js_button.addEventListener("click", function () {
   fetch("/send_app", {
     method: "POST",
     body: "JS",
-  })
-    .then((res) => {
-      fetch("/get_iter", {
-        method: "POST",
-      })
-        .then((response) => response.json())
-        .then((res) => {
-          updateProgress(res.html_iter, res.max_html);
-        });
-    })
-    .catch((error) => console.log(error))
-    .finally(clearInterval(interval));
+  }).catch((error) => console.log(error));
 });

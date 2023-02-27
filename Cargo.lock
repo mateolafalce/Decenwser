@@ -1057,7 +1057,7 @@ dependencies = [
 
 [[package]]
 name = "decenwser_rust"
-version = "0.2.0"
+version = "0.2.4"
 dependencies = [
  "anchor-client",
  "anchor-lang",

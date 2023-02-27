@@ -77,15 +77,25 @@ pub fn request(html_js:String, iter: usize, program: Program) -> Result<Vec<u8>>
     if html_js == "HTML" {
         let html_pda: Pdas = from_str(&read_to_string("src/functions/get_page/html_pdas.json").unwrap()).unwrap();
         let pda: Pubkey = Pubkey::from_str(&html_pda.pdas[iter]).unwrap();
-        let html: StoreAccount = program.account(pda)?;
-        store_iter(true).unwrap();
-        return Ok(html.content)
+        let balance = program.rpc().get_balance(&pda).unwrap();
+        if balance == 0 {
+            return Ok([].to_vec())
+        } else {
+            let html: StoreAccount = program.account(pda)?;
+            store_iter(true).unwrap();
+            return Ok(html.content)
+        }
     } else {
         let js_pda: Pdas = from_str(&read_to_string("src/functions/get_page/js_pdas.json").unwrap()).unwrap();
         let pda: Pubkey = Pubkey::from_str(&js_pda.pdas[iter]).unwrap();
-        let js: StoreAccount = program.account(pda)?;
-        store_iter(false).unwrap();
-        return Ok(js.content)
+        let balance = program.rpc().get_balance(&pda).unwrap();
+        if balance == 0 {
+            return Ok([].to_vec())
+        } else {
+            let js: StoreAccount = program.account(pda)?;
+            store_iter(false).unwrap();
+            return Ok(js.content)
+        }
     }
 }
 
