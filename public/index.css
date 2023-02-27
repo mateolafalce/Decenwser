@@ -1,0 +1,24 @@
+@import "css/Main/input-bar.css";
+@import "css/Main/appCollector.css";
+@import "css/Main/Decenwser.css";
+@import "css/Main/top-bar.css";
+@import "css/Main/route.css";
+@import "css/Main/unlock.css";
+@import "css/Convert/output.css";
+@import "css/Main/footer.css";
+@import "css/Main/container.css";
+@import "css/Convert/drag.css";
+@import "css/Convert/progress-bar.css";
+
+:root{
+    --NEON: #00FF19;
+    --BG: #01040f;
+}
+
+* {
+    background: var(--BG);
+    color: VAR(--NEON);
+    padding: 0%;
+    margin: 0%;
+}
+  

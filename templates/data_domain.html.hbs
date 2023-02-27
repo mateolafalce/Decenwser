@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html id="main" lang="en">
+  <title>{{title}}</title>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,0,0" />
+    <link rel="stylesheet" href="../index.css">
+    <link rel="icon" href="../img/Decenwser.ico">
+    <script src="../pages/data_domain/get_data_domain.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+  </head>
+    <body>
+        <div>
+            <h2>Enter a domain</h2>
+            <input type="text" id="input-domain"/>
+            <button onclick="get_data_domain()">Search</button> 
+        </div> 
+        <div id="data">
+            <p id="pubkey"></p>
+            <p id="domain"></p>
+            <p id="authority"></p>
+            <p id="bump_original"></p>
+            <p id="html"></p>
+            <p id="js"></p>
+            <p id="len"></p>
+            <p id="secure_check"></p>
+        </div>
+    </body>
+</html>

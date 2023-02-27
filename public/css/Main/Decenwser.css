@@ -1,0 +1,15 @@
+#Decenwser {
+    margin: 0 auto;
+    font-size: 300%;
+    letter-spacing: 5px;
+    text-shadow: 10px 10px 10px #6B19AF;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#Decenwser:hover {
+    cursor: default;
+}

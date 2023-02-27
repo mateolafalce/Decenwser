@@ -1,0 +1,14 @@
+#output {
+    text-align: justify;
+    margin:2%;
+}
+
+#copy-output {
+    float: right;
+    margin: 2%;
+}
+button {
+    cursor: pointer;
+    background-color: aliceblue;
+    color: black;
+}

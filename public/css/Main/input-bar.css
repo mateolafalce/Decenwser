@@ -1,0 +1,27 @@
+#input-bar {
+    background: white;
+    transition: border-color .3s;
+    border-color: var(--BG);
+    border-radius: 60px 60px;
+    text-indent: 2%;
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 4.9%;
+    letter-spacing: 2px;
+    color: black;
+    font-style: normal
+}
+#input-bar:focus{
+    caret-color:black;
+    outline: none;
+}
+#input-bar::-webkit-input-placeholder { 
+    letter-spacing: 2px;
+    color: black;
+    opacity: 50%;
+}
+
+  

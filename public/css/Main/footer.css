@@ -1,0 +1,10 @@
+#footer {
+    position: absolute;
+    text-align: center;
+    right: 45%;
+    bottom: 3%;
+}
+#footer span {
+    position: absolute;
+    bottom: 1%;
+}
