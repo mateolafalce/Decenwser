@@ -14,14 +14,14 @@ pub fn add_html(
         ErrorCode::AuthorityError
     );
     require!(
-        ctx.accounts.store.content.len() < 9000, 
-        ErrorCode::Max9000
+        ctx.accounts.store.content.len() < 9900, 
+        ErrorCode::Max9900
     );
     let main_account: &mut Account<MainAccount> = &mut ctx.accounts.main_account;
     let store: &mut Account<StoreAccount> = &mut ctx.accounts.store;
     store.content.extend(content);
     msg!("The content of the PDA was updated.");
-    if store.content.len() == 9000 {
+    if store.content.len() == 9900 {
         main_account.html += 1;
     }
     Ok(())

@@ -60,6 +60,8 @@
   - <a href="#store">html_store() & js_store()</a>
   - <a href="#add">add_html() & add_js()</a>
 - <a href="#decenwser-index">**Decenwser Browser 💻**</a>
+  - <a href="upload-web">How to upload a page to Decenwser?</a>
+  - <a href="important">Important things to keep in mind</a>
 
 ---
 
@@ -280,14 +282,14 @@ pub fn add_html(
         ErrorCode::AuthorityError
     );
     require!(
-        ctx.accounts.store.content.len() < 9000,
-        ErrorCode::Max9000
+        ctx.accounts.store.content.len() < 9900,
+        ErrorCode::Max9900
     );
     let main_account: &mut Account<MainAccount> = &mut ctx.accounts.main_account;
     let store: &mut Account<StoreAccount> = &mut ctx.accounts.store;
     store.content.extend(content);
     msg!("The content of the PDA was updated.");
-    if store.content.len() == 9000 {
+    if store.content.len() == 9900 {
         main_account.html += 1;
     }
     Ok(())
@@ -325,7 +327,7 @@ pub struct AddHtml<'info> {
 }
 ```
 
-<p>These two functions are intended to update the content of the PDA by increasing the storage space. First, it is verified that the authority is the owner, and then the maximum allowed in the PDA is checked, which in this case has been determined to be 9000 bytes. After the value is stored, a global message is emitted to verify the update, and after all of the above has been completed, it is checked if the data volume has reached its maximum, and if so, the .html or .js of the account is increased by one to create another PDA and continue with the data upload process.</p>
+<p>These two functions are intended to update the content of the PDA by increasing the storage space. First, it is verified that the authority is the owner, and then the maximum allowed in the PDA is checked, which in this case has been determined to be 9900 bytes of html/js content. After the value is stored, a global message is emitted to verify the update, and after all of the above has been completed, it is checked if the data volume has reached its maximum, and if so, the .html or .js of the account is increased by one to create another PDA and continue with the data upload process.</p>
 
 > In version 0.2.4, this type of architecture was implemented, which allows for great performance when rendering the webpage.
 
@@ -380,7 +382,7 @@ pub struct DeleteHtml<'info> {
         mut,
         seeds = [
             b"HTML",
-            (main_account.html - 1).to_le_bytes().as_ref(),
+            main_account.html.to_le_bytes().as_ref(),
             main_account.key().as_ref()
         ],
         bump = account.bump_original,
@@ -407,6 +409,53 @@ pub struct DeleteHtml<'info> {
 <h1 id="decenwser-index">Decenwser Browser</h1>
 
 <p>In this section they will analyze all aspects related to the operation of the browser. We will talk about the justification of the general development framework and its performance.</p>
+
+<br>
+
+---
+
+<h3 id="upload-web"> How to upload a page to Decenwser?</h3>
+<p>To upload a page, all you need to do is download the browser, compile the HTML and JavaScript into two different files, and go to "Upload a web" in the top bar.
+
+- First, the code is converted to bytes so that it can be sent to the Solana blockchain.
+- Second, the user is asked to create a domain in which to upload the HTML and JavaScript. In this process, the wallet will be requested to sign this transaction and subsequent ones.
+- Third, the HTML is sent to the blockchain.
+- Fourth, the JavaScript is sent to the blockchain.
+
+<p>The process is very straightforward and intuitive to execute. That said, it's worth noting that the data upload process often takes too long. A page made with React and compiled with webpack, with an output of about 400,000 lines of code in total, would take between 3:00 to 4:30 hours to complete the upload, and this could be affected by the user's internet connectivity.</p>
+
+<h3 id="important">Important things to keep in mind</h3>
+
+<p>When developing an app for Decenwser, the .js file should be called from the HTML as a </p>
+
+```html
+<script src="../js.js"></script>
+```
+
+<p>before the root div.</p>
+
+<p>You have to add a CDN link depending on the framework you are working with, like React for example.</p>
+
+```html
+<script
+  crossorigin
+  src="https://unpkg.com/react@18/umd/react.production.min.js"
+></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+></script>
+```
+
+<p>Webpack and Babel should be configured to compile the code and produce 2 outputs in production mode. Here's a template so you only need to write the web logic
+
+[link here](https://github.com/mateolafalce/template-decenwser-app)
+
+It includes a React CDN link, but you can use any.</p>
+
+> The wallet is only stored in the application signing process and in case of modifying or deleting content. After that, it is cleaned of the data by the system program.
+
+---
 
 <br>
 
