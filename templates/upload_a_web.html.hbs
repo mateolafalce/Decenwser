@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>{{title}}</title>
+  <link rel="icon" href="../img/Decenwser.ico" />
+  <link rel="stylesheet" href="../index.css" />
+  <script src="../pages/convert/root.js" defer></script>
+  <script src="/pages/convert/encode.js" defer></script>
+  <script src="/pages/convert/upload_file.js" defer></script>
+  <body>
+    <div id="upload-web">
+        <h2 id="upload-title">Upload the html and javascript files here</h2>
+        <br>
+        <div id="drop-area">
+            <form class="my-form">
+            <p>Drag and drop your files here</p>
+            <input
+                type="file"
+                id="fileElem"
+                multiple
+                accept=".js, .html"
+                onchange="handleFiles(this.files)"
+                hidden
+            />
+            <label class="button" for="fileElem">Select files</label>
+            </form>
+        </div>
+    </div>
+    <table id="price-table">
+      <tr>
+        <th>Signature</th>
+        <th>Price (SOL)</th>
+      </tr>
+      <tr>
+        <td>DOMAIN</td>
+        <td>0.00145964 SOL</td>
+      </tr>
+      <tr>
+        <td>HTML</td>
+        <td id="html-price">0 SOL</td>
+      </tr>
+      <tr>
+        <td>JAVASCRIPT</td>
+        <td id="js-price">0 SOL</td>
+      </tr>
+      <tr>
+        <td>TOTAL</td>
+        <td id="total-price">0.00145964 SOL</td>
+      </tr>
+    </table>
+    <div id="web-buttons">
+        <button id="go-back" onclick="main()">Go back</button>
+        <button id="next" onclick="createADomain()">Next</button>
+    </div>
+  </body>
+</html>

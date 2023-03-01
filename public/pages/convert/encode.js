@@ -16,7 +16,28 @@ function encodeApi(files, html_js) {
     fetch("/encode", {
       method: "POST",
       body: JSON.stringify(data),
-    }).catch((error) => console.error("Error:", error));
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.html_js == "html") {
+          document.getElementById("html-price").innerText =
+            res.price / 1000000000 + " SOL";
+          document.getElementById("total-price").innerText =
+            res.price / 1000000000 +
+            0.00145964 +
+            parseFloat(document.getElementById("js-price").innerHTML) +
+            " SOL";
+        } else if (res.html_js == "js") {
+          document.getElementById("js-price").innerText =
+            res.price / 1000000000 + " SOL";
+          document.getElementById("total-price").innerText =
+            res.price / 1000000000 +
+            0.00145964 +
+            parseFloat(document.getElementById("html-price").innerHTML);
+          +" SOL";
+        }
+      })
+      .catch((error) => console.error("Error:", error));
   };
   reader.readAsText(files);
 }

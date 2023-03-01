@@ -8,7 +8,6 @@ inputBar.addEventListener("keyup", function (event) {
 });
 
 async function getPage() {
-  let input = document.getElementsByName("search")[0].value;
   fetch("/get_len", {
     method: "POST",
     body: inputElement.value,
@@ -38,11 +37,7 @@ async function getPage() {
             updateProgress(res.html_iter + res.js_iter, total_load_bar);
           });
       }, 1500);
-      document.getElementById("phrase").style.display = "block";
-      document.getElementById("autor").style.display = "block";
-      document.getElementById("cite").style.display = "block";
-      document.getElementById("background-bar").style.display = "block";
-      document.getElementById("fill-bar").style.display = "block";
+      document.getElementById("load-container").style.display = "block";
       document.getElementById("appCollector").innerHTML = "";
       document.getElementById("footer").innerHTML = "";
     });

@@ -166,7 +166,7 @@ pub struct MainAccountStruct<'info> {
 
 <p>Then two crucial values are created for content storage. The value corresponding to the size of the HTML or JS after each iteration will be saved there<u16>.</p>
 
-> Previously, an alternative architecture was experimented with, in which the size of the HTML and JS was a u64 that increased in value based on the content increase. However, this model was abandoned as it stored an excessively large amount of data for the web, with a limit of 1.660207e+22 compared to the current model's 589,815,000 characters.
+> Previously, an alternative architecture was experimented with, in which the size of the HTML and JS was a u64 that increased in value based on the content increase. However, this model was abandoned as it stored an excessively large amount of data for the web, with a limit of 1.660207e+22 compared to the current model's 648,796,500 characters.
 
 <p>It should be noted that the domain itself (the PDA) cannot be removed from the network, but all of its content stored within it can be. This decision is focused on limiting external interventions as much as possible in the websites rendered by Decenwser.</p>
 
@@ -454,6 +454,8 @@ pub struct DeleteHtml<'info> {
 It includes a React CDN link, but you can use any.</p>
 
 > The wallet is only stored in the application signing process and in case of modifying or deleting content. After that, it is cleaned of the data by the system program.
+
+<p>The images in Decenwser must be imported from either traditional servers or decentralized servers. Currently, storing images passed to base64 on the blockchain is very expensive. If a user chooses to do so, they do it at their own risk. From banners to the favicon, they must be externally imported with links into the application's source code running on Decenwser.</p>
 
 ---
 

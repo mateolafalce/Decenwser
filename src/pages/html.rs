@@ -1,11 +1,11 @@
 use rocket_dyn_templates::{context, Template};
 
-#[get("/convert")]
+#[get("/html")]
 pub fn index() -> Template {
     Template::render(
-        "convert",
+        "html",
         context! {
-            foo: 123,
+            title: "Upload Html Content",
         }
     )
 }

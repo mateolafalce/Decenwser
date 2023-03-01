@@ -17,6 +17,6 @@ impl MainAccount {
     pub const SIZE: usize = 1 + 32 + 4 + 32 + 2 + 2;
 }
 impl StoreAccount {
-    pub const SIZE: usize = 4 + 00 + 1;
+    pub const SIZE: usize = 4 + 900 + 1;
 }
 

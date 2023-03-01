@@ -18,6 +18,7 @@ use std::{
     }
 };
 use crate::functions::constants::encode::Encode;
+use anyhow::Result;
 
 #[derive(Debug, Deserialize, Serialize)]
 #[serde(crate = "rocket::serde")]
@@ -26,7 +27,14 @@ pub struct EncodeData {
     pub html_js: String
 }
 
-pub fn encode(input: String, html_js: String){
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(crate = "rocket::serde")]
+pub struct Price {
+    pub price: u64,
+    pub html_js: String
+}
+
+pub fn encode(input: String, html_js: String) -> Result<Price> {
     let encode: Vec<Vec<u8>> = input.as_bytes()
         .chunks(900)
         .map(|chunk| chunk.to_vec())
@@ -35,15 +43,25 @@ pub fn encode(input: String, html_js: String){
         let mut config: Encode = from_str(&read_to_string("src/functions/encode_output/encode_html.json").unwrap()).unwrap();
         config.content = encode;
         write("src/functions/encode_output/encode_html.json", to_string(&config).unwrap()).unwrap();
+        let price: Price = Price {
+            price: (config.content.len() * 6269000) as u64,
+            html_js: html_js
+        };
+        Ok(price)
     } else  {
         let mut config: Encode = from_str(&read_to_string("src/functions/encode_output/encode_js.json").unwrap()).unwrap();
         config.content = encode;
         write("src/functions/encode_output/encode_js.json", to_string(&config).unwrap()).unwrap();
+        let price: Price = Price {
+            price: (config.content.len() * 6269000) as u64,
+            html_js: html_js
+        };
+        Ok(price)
     }
 }
 
 
 #[post("/", data = "<data>")]
-pub fn index(data: Json<EncodeData>)  {
-    encode(data.input.clone(), data.html_js.clone())
+pub fn index(data: Json<EncodeData>) -> Json<Price> {
+    Json(encode(data.input.clone(), data.html_js.clone()).unwrap())
 }

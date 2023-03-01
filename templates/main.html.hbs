@@ -36,7 +36,7 @@
         <div class="cont-menu"> 
           <nav> 
             <div id="top-bar"> 
-              <NavLink id="route" onclick="convert()"> Upload a web
+              <NavLink id="route" onclick="uploadAWeb()"> Upload a web
                 <p>.</p>
                 <div id="item" class="material-symbols-sharp"> language </div>
               </NavLink> <div id="route" onclick="toDocumentation()"> More about
@@ -63,50 +63,42 @@
         </body>
 
 
-        <title>Loading</title>
-        <div id="load-container">
-            <p id="phrase" style="display: none;">"It is not the drug, but its prohibition, which destroys society."</p>
-            <p id="autor" style="display: none;">Jesus Huerta de Soto</p>
-            <p id="cite" style="display: none;">Political Economy course at the Rey Juan Carlos University of Madrid. 2009-2010</p>
-        </div>
-        <div id="background-bar" style="display: none;">
-            <div id="fill-bar" style="display: none;">
+        <div id="load-container" style="display:none">
+          <title>Loading</title>
+            <p id="phrase">"It is not the drug, is their prohibition, which destroys society."</p>
+            <p id="autor">Jesus Huerta de Soto</p>
+            <p id="cite">Political Economy course at the Rey Juan Carlos University of Madrid. 2009-2010</p>
+            <div id="background-bar">
+              <div id="fill-bar"></div>
+            </div>
         </div>
     <style>
-      #load-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      #phrase {
-        font-family: "Times New Roman", 
-        Times, serif;
-        font-style: italic;
-      }
-      #autor {
-        font-family: "Times New Roman", 
-        Times, serif;
-        font-style: italic;
-      }
-      #cite {
-        font-family: "Times New Roman", 
-        Times, serif;
-        font-style: italic;
-      }
-        #background-bar {
-            position: absolute;  
-            left: 50%;
-            bottom: 10%;  
-            transform: translate(-50%, -50%);
-            height: 20px;
-            background-color: white;
-            width: 90%;
-        }
-        #fill-bar {
-            height: 20px;
-            background-color: #00FF19;
-            width: 0%;
-            transition: width 0.2s ease-in-out;
-        }
-    </style>
+            #load-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 50vh;
+            }
+            #phrase, #autor, #cite {
+                font-family: "Times New Roman", Times, serif;
+                font-style: italic;
+                margin-bottom: 10px;
+            }
+            #background-bar {
+                position: absolute;
+                left: 50%;
+                bottom: 10%;
+                transform: translate(-50%, -50%);
+                height: 20px;
+                background-color: white;
+                width: 90%;
+            }
+            #fill-bar {
+                height: 20px;
+                background-color: #00FF19;
+                width: 0%;
+                transition: width 0.2s ease-in-out;
+            }
+        </style>
 </html>

@@ -7,8 +7,8 @@ function config() {
 function main() {
   window.location.replace("/main");
 }
-function convert() {
-  window.location.replace("/main/convert");
+function uploadAWeb() {
+  window.location.replace("/main/upload_a_web");
 }
 
 history.pushState({}, "", "/main");

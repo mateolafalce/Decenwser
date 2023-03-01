@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>{{title}}</title>
+  <link rel="icon" href="../../img/Decenwser.ico" />
+  <link rel="stylesheet" href="../../index.css" />
+  <script src="../../pages/convert/domain-root.js" defer></script>
+  <script src="../../pages/convert/initDomain.js" defer></script>
+  <script src="../../pages/convert/storeWallet.js" defer></script>
+    <body>
+        <div id="new-domain">
+            <h2 id="init-domain-title">Initialize web3 domain</h2>
+            <input id="init-domain" >
+            <button onclick="initDomain()">Create</button>
+            <div>
+                <input type="file" id="fileInput">
+            </div>
+        </div>
+        <div id="web-buttons">
+            <button id="go-back" onclick="UploadAWeb()">Go back</button>
+            <button id="next" onclick="Html()">Next</button>
+        </div>
+    </body>
+</html>

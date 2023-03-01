@@ -1,5 +1,5 @@
 [default]
-limits = { string = 4400000, forms = 4400000}
+limits = { string = 648796500, forms = 4400000}
 workers = 50
 port = 2004
 

@@ -25,13 +25,32 @@ use functions::{
       encode
     },
     store_app::store_app, 
-    delete::{delete_pda, delete_stored_app},
-    config_settings::{get_config_settings, modify_network},
+    delete::{
+      delete_pda, 
+      delete_stored_app
+    },
+    config_settings::{
+      get_config_settings, 
+      modify_network
+    },
 };
-use pages::{convert_page, main_page, config_page, data_domain};
-use rocket::{fs::{relative, FileServer}};
+use pages::{ 
+  main_page, 
+  config_page, 
+  data_domain,
+  upload_a_web,
+  create_a_domain,
+  html,
+  js
+};
+use rocket::{
+  fs::{
+    relative, 
+    FileServer
+  }
+};
 use rocket_dyn_templates::Template;
-use std::process::{Command};
+use std::process::Command;
 
 #[rocket::main]
 async fn main() {
@@ -47,6 +66,10 @@ Command::new("node")
         .mount("/main", routes![main_page::index])
         .mount("/main", routes![data_domain::index])
         .mount("/main", routes![config_page::index])
+        .mount("/main", routes![upload_a_web::index])
+        .mount("/main/upload_a_web", routes![create_a_domain::index])
+        .mount("/main/upload_a_web/create_a_domain", routes![html::index])
+        .mount("/main/upload_a_web/create_a_domain/html", routes![js::index])
         .mount("/modify_network", routes![modify_network::index])
         .mount("/clear", routes![clear::index])
         .mount("/get_config", routes![get_config_settings::index])
@@ -60,7 +83,6 @@ Command::new("node")
         .mount("/get_page", routes![get_page::index])
         .mount("/store_app", routes![store_app::index])
         .mount("/delete_stored_app", routes![delete_stored_app::index])
-        .mount("/main", routes![convert_page::index])
         .mount("/create_app", routes![create_app::index])
         .mount("/delete_pda", routes![delete_pda::index])
         .mount("/send_app", routes![send_app::index])
