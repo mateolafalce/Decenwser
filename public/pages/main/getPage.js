@@ -28,15 +28,18 @@ async function getPage() {
       });
       let result = await res.json();
       let total_load_bar = result.len_js + result.len_html;
-      setInterval(() => {
+      const intervalID = setInterval(() => {
         fetch("/get_iter", {
           method: "POST",
         })
           .then((response) => response.json())
           .then((res) => {
+            if (res.html_iter + res.js_iter === total_load_bar) {
+              clearInterval(intervalID);
+            }
             updateProgress(res.html_iter + res.js_iter, total_load_bar);
           });
-      }, 1500);
+      }, 800);
       document.getElementById("load-container").style.display = "block";
       document.getElementById("appCollector").innerHTML = "";
       document.getElementById("footer").innerHTML = "";

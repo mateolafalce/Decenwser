@@ -60,8 +60,8 @@
   - <a href="#store">html_store() & js_store()</a>
   - <a href="#add">add_html() & add_js()</a>
 - <a href="#decenwser-index">**Decenwser Browser 💻**</a>
-  - <a href="upload-web">How to upload a page to Decenwser?</a>
-  - <a href="important">Important things to keep in mind</a>
+  - <a href="#upload-web">How to upload a page to Decenwser?</a>
+  - <a href="#important">Important things to keep in mind</a>
 
 ---
 
