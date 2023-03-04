@@ -4,16 +4,31 @@
   <link rel="icon" href="../../img/Decenwser.ico" />
   <link rel="stylesheet" href="../../index.css" />
   <script src="../../pages/convert/domain-root.js" defer></script>
-  <script src="../../pages/convert/initDomain.js" defer></script>
-  <script src="../../pages/convert/storeWallet.js" defer></script>
+  <script src="/pages/convert/upload_file.js" defer></script>
+  <script src="/pages/convert/initDomain.js" defer></script>
+  <link rel="stylesheet" href="../../css/Convert/drag.css" />
     <body>
-        <div id="new-domain">
-            <h2 id="init-domain-title">Initialize web3 domain</h2>
+        <h2 id="init-domain-title">Initialize web3 domain</h2>
+        <div id="upload-web">
+            <div id="drop-area">
+                <form class="my-form">
+                <p>Drag and drop your wallet here</p>
+                <input
+                    type="file"
+                    id="fileElem"
+                    multiple
+                    accept=".json"
+                    onchange="handleFiles(this.files)"
+                    hidden
+                />
+                <label class="button" for="fileElem">Select files</label>
+                </form>
+            </div>
+        </div>
+        <div id="new-domain" style="display:none">
+            <p>Register your Domain</p>
             <input id="init-domain" >
             <button onclick="initDomain()">Create</button>
-            <div>
-                <input type="file" id="fileInput">
-            </div>
         </div>
         <div id="web-buttons">
             <button id="go-back" onclick="UploadAWeb()">Go back</button>

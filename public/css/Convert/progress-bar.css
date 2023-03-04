@@ -1,12 +1,45 @@
 #background-bar {
-  height: 20px;
+  border-radius: 5px;
+  height: 25px;
   background-color: #ccc;
   width: 90%;
-  }
+}
   
 #fill-bar {
-  height: 20px;
+  height: 25px;
   background-color: green;
   width: 0%;
   transition: width 0.2s ease-in-out;
+}
+
+#output {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+#html-button, #js-button {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  height: 50px;
+  width: 200px;
+  margin: 0px;
+  background-color: var(--NEON);
+  color: #6B19AF;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#html-button:hover {
+  background-color: #6B19AF;
+  color: var(--NEON);
+}
+
+#js-button:hover {
+  background-color: #6B19AF;
+  color: var(--NEON);
 }

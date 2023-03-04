@@ -37,4 +37,13 @@ function uploadFile(files) {
   if (files.name.endsWith(".js")) {
     encodeApi(files, "js");
   }
+  if (files.name.endsWith(".json")) {
+    fetch("/store_wallet", {
+      method: "POST",
+      body: files,
+    }).then((res) => {
+      document.getElementById("upload-web").remove();
+      document.getElementById("new-domain").style.display = "";
+    });
+  }
 }

@@ -40,8 +40,7 @@ async function getPage() {
             updateProgress(res.html_iter + res.js_iter, total_load_bar);
           });
       }, 800);
-      document.getElementById("load-container").style.display = "block";
-      document.getElementById("appCollector").innerHTML = "";
-      document.getElementById("footer").innerHTML = "";
+      document.getElementById("load-container").style.display = "flex";
+      document.getElementById("appCollector").remove();
     });
 }
