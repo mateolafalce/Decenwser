@@ -1,6 +1,6 @@
 [default]
 limits = { string = 648796500, forms = 4400000}
-workers = 50
+workers = 25
 port = 2004
 
 [default.shutdown]

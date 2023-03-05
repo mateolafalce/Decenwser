@@ -8,7 +8,7 @@ pub struct Quotes {
     pub quotes: &'static str,
 }
 
-static QUOTES: [Quotes; 5] = [
+static QUOTES: [Quotes; 6] = [
     Quotes {
         phrase: "It is not the drug, is their prohibition, which destroys society.",
         author: "Jesus Huerta de Soto",
@@ -40,5 +40,10 @@ static QUOTES: [Quotes; 5] = [
         politicians.",
         author: "Franz Oppenheimer",
         quotes: "The State (1922), p.36" 
+    },
+    Quotes {
+        phrase: "War, trade and piracy is an inseparable trinity.",
+        author: "Fausto J. W. von Goethe",
+        quotes: "Fausto (1808)" 
     }
 ];

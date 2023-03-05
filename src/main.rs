@@ -1,6 +1,5 @@
 /*
   -Roots
-  TODO: Test with 9000
 */
 
 mod functions;
@@ -50,7 +49,7 @@ use rocket::{
   }
 };
 use rocket_dyn_templates::Template;
-use std::process::Command;
+use std::{process::Command, io};
 
 #[rocket::main]
 async fn main() {
@@ -90,4 +89,6 @@ Command::new("node")
         .attach(Template::fairing())
         .launch()
         .await;
+  let mut input = String::new();
+  io::stdin().read_line(&mut input).unwrap();
 }

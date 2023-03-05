@@ -8,6 +8,7 @@
     align-items: center;
     text-decoration: none;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 #route p {

@@ -3,7 +3,6 @@ name = "decenwser_rust"
 version = "0.2.4"
 edition = "2021"
 
-
 [dependencies]
 decenwser = { path = "./src/functions/decenwser", features = ["no-entrypoint"] }
 rocket = {version="0.5.0-rc.2", features = ["json"]}
@@ -11,6 +10,9 @@ anchor-client = { version = "0.26.0", features = ["debug"] }
 anchor-lang = "0.26.0"
 anyhow = "1.0.32"
 shellexpand = "3.0.0"
+
+[package.metadata.winres]
+icon = "public/img/Decenwser.ico"
 
 
 [dependencies.rocket_dyn_templates]
