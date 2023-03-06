@@ -8,6 +8,7 @@ inputBar.addEventListener("keyup", function (event) {
 });
 
 async function getPage() {
+  updateProgress(0, 1);
   fetch("/get_len", {
     method: "POST",
     body: inputElement.value,
@@ -24,6 +25,9 @@ async function getPage() {
       fetch("/get_page", {
         method: "POST",
       }).finally((res) => {
+        fetch("/store_web_command", {
+          method: "POST",
+        });
         web();
       });
       let result = await res.json();
@@ -33,14 +37,17 @@ async function getPage() {
           method: "POST",
         })
           .then((response) => response.json())
-          .then((res) => {
-            if (res.html_iter + res.js_iter === total_load_bar) {
+          .then(async (res) => {
+            if (
+              (await res.html_iter) + (await res.js_iter) ===
+              total_load_bar
+            ) {
               clearInterval(intervalID);
             }
             updateProgress(res.html_iter + res.js_iter, total_load_bar);
           });
-      }, 800);
-      document.getElementById("load-container").style.display = "flex";
+      }, 1000);
       document.getElementById("appCollector").remove();
+      document.getElementById("load-container").style.display = "flex";
     });
 }

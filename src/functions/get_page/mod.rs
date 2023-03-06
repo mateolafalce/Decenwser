@@ -6,7 +6,9 @@ pub use get_domain::*;
 pub use get_len::*;
 pub use store_pdas::*;
 pub use get_data_domain::*;
+pub use store_web_command::*;
 
+pub mod store_web_command;
 pub mod get_data_domain;
 pub mod store_pdas;
 pub mod get_len;

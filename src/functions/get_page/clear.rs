@@ -24,6 +24,12 @@ use crate::functions::{
 };
 
 pub fn clear() {
+    let mut mut_html_len: State = from_str(&read_to_string("state.json").unwrap()).unwrap();
+    mut_html_len.len_html = 0;
+    write("state.json", to_string(&mut_html_len).unwrap()).unwrap();
+    let mut mut_js_len: State = from_str(&read_to_string("state.json").unwrap()).unwrap();
+    mut_js_len.len_js = 0;
+    write("state.json", to_string(&mut_js_len).unwrap()).unwrap();
     let mut html_len: Encode = from_str(&read_to_string("src/functions/encode_output/encode_html.json").unwrap()).unwrap();
     let mut js_len: Encode = from_str(&read_to_string("src/functions/encode_output/encode_js.json").unwrap()).unwrap();
     html_len.content = vec![];

@@ -11,10 +11,6 @@ anchor-lang = "0.26.0"
 anyhow = "1.0.32"
 shellexpand = "3.0.0"
 
-[package.metadata.winres]
-icon = "public/img/Decenwser.ico"
-
-
 [dependencies.rocket_dyn_templates]
 version = "0.1.0-rc.2"
 features = ["handlebars"]

@@ -28,7 +28,13 @@ pub fn store_len() -> Result<Len> {
     let program_id: Pubkey =
         Pubkey::from_str(&program_id::ID).unwrap();
     let (pda, _bump): (Pubkey, u8) =
-            Pubkey::find_program_address(&[&hash(get_domain().unwrap().as_bytes()).to_bytes()], &program_id);
+            Pubkey::find_program_address(
+            &[&hash(
+                get_domain().unwrap().as_bytes()
+            ).to_bytes()
+            ], 
+            &program_id
+        );
     let client: Client = Client::new(cluster().unwrap(), Rc::new(Keypair::new()));
     let app_data: MainAccount = client.program(program_id).account(pda).unwrap();
     let app: Len = Len {

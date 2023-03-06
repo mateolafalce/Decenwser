@@ -34,10 +34,18 @@ use crate::functions::{
 pub async fn get_page() {
     let check: String = "apps/".to_owned() + &get_domain().unwrap() + ".html";
     if verify(check).unwrap() == true {
-        let from_path: [String;2] = [("apps/".to_owned() + &get_domain().unwrap() + ".html").to_string(), ("apps/".to_owned() + &get_domain().unwrap() + ".js").to_string()];
+        let from_path: [String;2] = [
+            ("apps/".to_owned() + &get_domain().unwrap() + ".html").to_string(), 
+            ("apps/".to_owned() + &get_domain().unwrap() + ".js").to_string()
+        ];
         let to_path: [String;2] = ["templates/web.html.hbs".to_string(), "public/js.js".to_string()];
         for i in 0..2 {
-            let file: File = OpenOptions::new().create(true).write(true).truncate(true).open(to_path[i].to_owned()).expect("Error");
+            let file: File = OpenOptions::new()
+            .create(false)
+            .write(true)
+            .truncate(true)
+            .open(to_path[i].to_owned())
+            .expect("Error");
             let mut write_file: File = file.try_clone().expect("Error");
             write_file.write_all(&fs::read(from_path[i].to_owned()).unwrap()).unwrap(); 
         }
@@ -47,7 +55,13 @@ pub async fn get_page() {
         for i in 0..get_len().unwrap().len_html {
             let program_id: Pubkey =
             Pubkey::from_str(&program_id::ID).unwrap();
-            let client: Client = Client::new(cluster().unwrap(), Rc::new(keypair_from_seed(&get_wallet()).expect("Example requires a keypair file")));
+            let client: Client = Client::new(
+                cluster().unwrap(), Rc::new(
+                    keypair_from_seed(
+                        &get_wallet()
+                    ).expect("Example requires a keypair file")
+                )
+            );
             let program: Program = client.program(program_id);
             html.push_str(
                 &String::from_utf8_lossy(
@@ -60,7 +74,15 @@ pub async fn get_page() {
         for i in 0..get_len().unwrap().len_js {
             let program_id: Pubkey =
             Pubkey::from_str(&program_id::ID).unwrap();
-            let client: Client = Client::new(cluster().unwrap(), Rc::new(keypair_from_seed(&get_wallet()).expect("Example requires a keypair file")));
+            let client: Client = Client::new(
+                cluster().unwrap(), 
+                Rc::new(
+                    keypair_from_seed(
+                        &get_wallet()
+                    )
+                    .expect("Example requires a keypair file")
+                )
+            );
             let program: Program = client.program(program_id);
             js.push_str(
                 &String::from_utf8_lossy(
@@ -75,7 +97,9 @@ pub async fn get_page() {
 
 pub fn request(html_js:String, iter: usize, program: Program) -> Result<Vec<u8>> {
     if html_js == "HTML" {
-        let html_pda: Pdas = from_str(&read_to_string("src/functions/get_page/html_pdas.json").unwrap()).unwrap();
+        let html_pda: Pdas = from_str(
+            &read_to_string("src/functions/get_page/html_pdas.json").unwrap()
+        ).unwrap();
         let pda: Pubkey = Pubkey::from_str(&html_pda.pdas[iter]).unwrap();
         let balance = program.rpc().get_balance(&pda).unwrap();
         if balance == 0 {
@@ -86,7 +110,9 @@ pub fn request(html_js:String, iter: usize, program: Program) -> Result<Vec<u8>>
             return Ok(html.content)
         }
     } else {
-        let js_pda: Pdas = from_str(&read_to_string("src/functions/get_page/js_pdas.json").unwrap()).unwrap();
+        let js_pda: Pdas = from_str(
+            &read_to_string("src/functions/get_page/js_pdas.json").unwrap()
+        ).unwrap();
         let pda: Pubkey = Pubkey::from_str(&js_pda.pdas[iter]).unwrap();
         let balance = program.rpc().get_balance(&pda).unwrap();
         if balance == 0 {

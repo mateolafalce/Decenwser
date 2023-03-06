@@ -8,6 +8,7 @@
 @import "css/Main/container.css";
 @import "css/Convert/drag.css";
 @import "css/Convert/progress-bar.css";
+@import "css/Main/barLoad.css";
 
 :root{
     --NEON: #00FF19;

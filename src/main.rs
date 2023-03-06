@@ -1,5 +1,9 @@
 /*
   -Roots
+  TODO: Loading gift
+  TODO: Create Apps 
+  TODO: Connect it with the tor network 
+  TODO: Account stats
 */
 
 mod functions;
@@ -14,7 +18,8 @@ use functions::{
       clear, 
       store_domain, 
       store_pdas, 
-      get_data_domain
+      get_data_domain,
+      store_web_command
     }, 
     create_app::create_app, 
     send_app::{
@@ -80,6 +85,7 @@ Command::new("node")
         .mount("/store_domain", routes![store_domain::index])
         .mount("/get_len", routes![store_len::index])
         .mount("/get_page", routes![get_page::index])
+        .mount("/store_web_command", routes![store_web_command::index])
         .mount("/store_app", routes![store_app::index])
         .mount("/delete_stored_app", routes![delete_stored_app::index])
         .mount("/create_app", routes![create_app::index])

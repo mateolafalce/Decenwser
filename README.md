@@ -62,6 +62,8 @@
 - <a href="#decenwser-index">**Decenwser Browser 💻**</a>
   - <a href="#upload-web">How to upload a page to Decenwser?</a>
   - <a href="#important">Important things to keep in mind</a>
+  - <a href="#change-network">Change network</a>
+  - <a href="#save-web-locally">Save a webpage locally</a>
 
 ---
 
@@ -456,6 +458,24 @@ It includes a React CDN link, but you can use any.</p>
 > The wallet is only stored in the application signing process and in case of modifying or deleting content. After that, it is cleaned of the data by the system program.
 
 <p>The images in Decenwser must be imported from either traditional servers or decentralized servers. Currently, storing images passed to base64 on the blockchain is very expensive. If a user chooses to do so, they do it at their own risk. From banners to the favicon, they must be externally imported with links into the application's source code running on Decenwser.</p>
+
+---
+
+<h3 id="change-network">Change Networks</h3>
+
+<p>To change between Devnet and Mainnet, you can access the main dashboard and change the network you want to navigate in just one click. By changing networks, the entire application state will adjust to your needs for both development and navigation</p>
+<div align="center">
+  
+  ![change-network](/public/img/change-network.PNG)
+  
+</div>
+
+---
+
+<h3 id="save-web-locally">Save a webpage locally</h3>
+
+<p>To avoid having to wait for the content to load directly from the blockchain, you can store the app locally in your browser. Simply press Ctrl + d to access the page immediately on your next search.</p>
+<p>This function stores the content of the page at the time of saving. If the source code of the page is updated (not necessarily the content), you will need to remove the app from the browser by going to the apps tab on the homepage.</p>
 
 ---
 
