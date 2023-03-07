@@ -10,6 +10,7 @@ anchor-client = { version = "0.26.0", features = ["debug"] }
 anchor-lang = "0.26.0"
 anyhow = "1.0.32"
 shellexpand = "3.0.0"
+magic-crypt = "3.1.12"
 
 [dependencies.rocket_dyn_templates]
 version = "0.1.0-rc.2"

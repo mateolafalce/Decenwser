@@ -32,18 +32,6 @@
 
 ![Decenwser](/public/img/decenwser.PNG)
 
-<br>
-
-> I am very concerned about the future of navigation.
-> The censorship in some applications has been just a
-> phone call, and government interventions in private
-> servers have disrupted users' freedom. This constant
-> attack on the free actions of millions of human beings
-> must stop for the sake of modernity and future society.
->
-> _Mateo Lafalce.
-> Summer 2022, Buenos Aires, Argentina._
-
 ---
 
 <br>

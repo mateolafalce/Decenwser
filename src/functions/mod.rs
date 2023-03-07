@@ -5,9 +5,9 @@ pub use constants::*;
 pub use delete::*;
 pub use store_app::*;
 pub use config_settings::*;
-//pub use quotes::*;
+//pub use encrypt::*;
 
-//pub mod quotes;
+//pub mod encrypt;
 pub mod config_settings;
 pub mod store_app;
 pub mod delete;
