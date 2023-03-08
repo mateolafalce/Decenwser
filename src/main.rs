@@ -2,7 +2,7 @@
   -Roots
   TODO: Loading gift
   TODO: Create Apps 
-  TODO: Connect it with the tor network 
+  TODO: Connect it with the decenwser network 
   TODO: Account stats
 */
 
@@ -37,6 +37,7 @@ use functions::{
       get_config_settings, 
       modify_network
     },
+    encrypt::new_key,
 };
 use pages::{ 
   main_page, 
@@ -58,11 +59,12 @@ use std::{process::Command, io};
 
 #[rocket::main]
 async fn main() {
-Command::new("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
+  new_key::new_key().unwrap();
+  Command::new("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
         .arg("http://127.0.0.1:2004/main")
         .spawn()
         .expect("Failed to start chrome");
-Command::new("node")
+  Command::new("node")
         .arg("server.js")
         .spawn()
         .expect("failed to start node server");

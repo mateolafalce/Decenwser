@@ -1,4 +1,4 @@
-#[macro_use] extern crate magic_crypt;
+/*#[macro_use] extern crate magic_crypt;
 use magic_crypt::MagicCryptTrait;
 
 pub fn decrypt(encrypted_string: String) -> Result<String> {
@@ -8,4 +8,4 @@ pub fn decrypt(encrypted_string: String) -> Result<String> {
     ).decrypt_base64_to_string(&encrypted_string).unwrap();
     println!("Decrypted String: {}", decrypted_string);
     decrypted_string
-}
+}*/
