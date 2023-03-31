@@ -12,9 +12,7 @@
 
 ---
 
-<br>
-
-## Program Ids
+<h3 align="center">Program Ids</h3>
 
 <div align="center">
 
@@ -26,57 +24,61 @@
 
 ---
 
-<br>
 
-<p>A decentralized browser that runs locally as a server at http://127.0.0.1:2004. This will ensure that HTML and JavaScript content that has been previously sent to the Solana blockchain enjoy immutable pages that cannot be modified or removed by national or international government institutions. The browser provides an alternative to the modern server-client paradigm, becoming a blockchain-client or local-client in case you want to save the web on your PC.</p>
+Web 3.0 has arrived to revolutionize the way we navigate the Internet and interact online. With decentralization as its main feature, this new stage of the web promises to offer a more secure, transparent and equitable experience for all users. In this context, Decenwser is a browser that emerges as an innovative alternative to the traditional server-client model.
+
+Decenwser is a decentralized browser that runs locally as a server at http://127.0.0.1:2004. Its main purpose is to guarantee the immutability of HTML and JavaScript content that has been previously stored on the Solana blockchain. This means that any web page that has been registered on the blockchain cannot be modified or removed by national or international government institutions. In this way, the privacy and security of the information we share online is ensured.
+
+In addition, Decenwser is presented as an alternative to the current server-client model. Instead of relying on remote servers, the browser acts as a blockchain client or local client, which means that users can save web information on their own computers. This guarantees the independence of the user and the reduction of the power of the big technological corporations.
+
+Among the benefits of Decenwser is the ability to regain control over our online data and the ability to browse the web without restrictions or censorship. In addition, by using blockchain technology, the browser offers greater transparency and security in data management, avoiding any type of tampering or manipulation.
+
+Decenwser is a tool that promises to change the way we interact with the web and interact online. With its decentralized approach and its ability to store information securely and immutably, it allows us to regain trust in technology and ensure privacy and independence online.
 
 ![Decenwser](/public/img/decenwser.PNG)
 
 ---
 
-<br>
-
 ## Index
 
 - <a href="#install">**Install the Project 📋**</a>
-  - <a href="#install-rust">Install Rust</a>
-  - <a href="#install-solana">Install Solana</a>
-  - <a href="#install-node">Install Node Js</a>
-  - <a href="#source">Download the source</a>
+  - <a href="#install-rust">Install Rust🦀 </a>
+  - <a href="#install-solana">Install Solana🌞</a>
+  - <a href="#install-node">Install Node Js🚀</a>
+  - <a href="#source">Download the source🗂️ </a>
 - <a href="#blockchain-program">**Blockchain Program ⛓️**</a>
-  - <a href="#main-account"> main_account() </a>
-  - <a href="#store">html_store() & js_store()</a>
-  - <a href="#add">add_html() & add_js()</a>
+  - <a href="#main-account"> Create a domain 💻 </a>
+  - <a href="#store"> Store the content of the web page📝</a>
+  - <a href="#add">Add more content to the web📤 </a>
+  - <a href="#delete">Remove content from the web❌ </a>
 - <a href="#decenwser-index">**Decenwser Browser 💻**</a>
-  - <a href="#upload-web">How to upload a page to Decenwser?</a>
-  - <a href="#important">Important things to keep in mind</a>
-  - <a href="#change-network">Change network</a>
-  - <a href="#save-web-locally">Save a webpage locally</a>
-
+  - <a href="#upload-web">How to upload a page to Decenwser?👀</a>
+  - <a href="#important">Important things to keep in mind❗</a>
+  - <a href="#change-network">Change network♻️</a>
+  - <a href="#save-web-locally">Save a webpage locally⛺</a>
+  - <a href="#get_page">get_page()📬</a>
 ---
 
-<br>
+<h1 id="install"> Install the project📋 </h1>
 
-<h1 id="install"> Install the Project </h1>
+If you're looking to install and run a project on your PC, it's important to follow a set of instructions to ensure everything runs smoothly. Below are some guidelines to help you get started
 
-<p> Follow the instructions below to be able to install the project and run it on your PC</p>
-
-<h3 id="install-rust"> Install Rust </h3>
+<h3 id="install-rust"> Install Rust🦀 </h3>
 
 Install rust to be able to compile the code on your machine
 [here](https://www.rust-lang.org/tools/install)
 
-<h3 id="install-solana"> Install Solana </h3>
+<h3 id="install-solana"> Install Solana🌞 </h3>
 
 Install solana to be able to connect to the blockchain and sign transactions
 [here](https://docs.solana.com/cli/install-solana-cli-tools#use-solanas-install-tool).
 
-<h3 id="install-node"> Install Node.js </h3>
+<h3 id="install-node"> Install Node.js🚀 </h3>
 
 Install the latest version of node.js to be able to mount decentralized servers
 [here](https://nodejs.org/en/download/)
 
-<h3 id="source"> Download the source </h3>
+<h3 id="source"> Download the source🗂️ </h3>
 
 ```bash
 git clone https://github.com/mateolafalce/Decenwser.git && cd Decenwser && cargo run
@@ -84,29 +86,28 @@ git clone https://github.com/mateolafalce/Decenwser.git && cd Decenwser && cargo
 
 ---
 
-<br>
 
-<h1 id="blockchain-program"> Blockchain Program </h1>
+<h1 id="blockchain-program"> Blockchain program⛓️</h1>
 
 Available [`here`](https://github.com/mateolafalce/Decenwser-blockchain-program)
 
-<p>The application program that runs on the Solana blockchain consists of 7 functions. The first function is dedicated to creating the web domain, the second (html) and third (js) functions are dedicated to creating their respective PDAs for storing content, the fourth (html) and fifth (js) functions are dedicated to modifying the content of the PDA by sending additional data to it, and the sixth and seventh functions are dedicated to deleting content from the web by closing the PDAs and returning the corresponding SOL to the user for upload.</p>
-<p>This section will provide more detailed information on each of these functions and their development details.</p>
+The constant evolution of technology has given rise to a new paradigm that is revolutionizing the way we interact with the web. The web3 and decentralization are two concepts that have become the basis of a new digital age, where privacy and security are the priority.
+
+In this context, the Decenwser browser has become a key tool to take advantage of the benefits of web3 and decentralization. This browser is designed to interact directly with the Solana blockchain network and its programmatic application, which consists of seven fundamental functions.
+
+The first function is dedicated to the creation of the web domain, which allows establishing a unique and decentralized identity for the site. Functions two and three (html and js) focus on creating the respective PDAs (Permanent Data Files) that store the page content securely and reliably on the blockchain network.
+
+Functions four and five (html and js) allow the modification of the PDA content by adding new data, which guarantees the constant updating of the site. Functions six and seven are dedicated to removing content from the web, allowing users to close their PDAs and receive the corresponding SOL (Solana's cryptocurrency) as a reward for their contribution to the network.
+
+The Decenwser browser has become an essential tool for those looking to reap the benefits of web3 and decentralization. By allowing direct access to the Solana blockchain network and its programmatic application, users can enjoy a more secure and private online experience. In addition, the use of decentralized PDAs ensures the immutability of the page content and resistance to censorship, which guarantees that the content is available forever.
+
+In summary, web3 and decentralization represent a new era of the web, where security, privacy and freedom are the main values. Decenwser has positioned itself as a key browser to reap these benefits, making it a must-have for users looking for a safer and more reliable online experience.
 
 ---
 
-<h3 id="main-account"> main_account() </h3>
-
-<br>
+<h3 id="main-account" align="center"> Create a domain 💻</h3>
 
 ```rust
-use anchor_lang::{
-    prelude::*,
-    solana_program::pubkey::Pubkey
-};
-use crate::state::accounts::*;
-use crate::error::ErrorCode;
-
 pub fn main_account(
     ctx: Context<MainAccountStruct>,
     web_name: String
@@ -150,34 +151,36 @@ pub struct MainAccountStruct<'info> {
 }
 ```
 
-<p>This function creates the basis of the user's domain on the network. Initially, any Solana network user can use this account without any special permission.</p>
+This function is designed to create the foundation for a user's domain on the network. The process begins by creating a PDA (Program Derived Address) which is used to store important data related to each code update, data retrieval, or deletion. This PDA is created using the web_name parameter passed into the function, which represents the name of the web domain being created.
 
-<p>A PDA is created to store important data for each code update, data retrieval, or deletion. The transaction signer is saved as the account authority to ultimately emit a message in the transaction providing proof of what was saved.</p>
+The function checks that the length of the web_name parameter is no greater than 32 characters, to ensure compatibility with the Solana blockchain. Once the PDA is created, the transaction signer is saved as the account authority to ultimately emit a message in the transaction providing proof of what was saved.
 
-<p>Then two crucial values are created for content storage. The value corresponding to the size of the HTML or JS after each iteration will be saved there<u16>.</p>
+Two crucial values are then created for content storage. The value corresponding to the size of the HTML or JS after each iteration will be saved there as a u16. This ensures that the amount of data stored is manageable and optimized for performance.
 
-> Previously, an alternative architecture was experimented with, in which the size of the HTML and JS was a u64 that increased in value based on the content increase. However, this model was abandoned as it stored an excessively large amount of data for the web, with a limit of 1.660207e+22 compared to the current model's 648,796,500 characters.
+> It's worth noting that an alternative architecture was previously experimented with, where the size of the HTML and JS was a u64 that increased in value based on the content increase. However, this model was abandoned as it stored an excessively large amount of data for the web, with a limit of 1.660207e+22 compared to the current model's 648,796,500 characters.
 
-<p>It should be noted that the domain itself (the PDA) cannot be removed from the network, but all of its content stored within it can be. This decision is focused on limiting external interventions as much as possible in the websites rendered by Decenwser.</p>
+The user's main account is then created and initialized with the PDA, and the values for HTML and JS are both set to 0. Finally, a message is emitted in the transaction indicating that the domain has been successfully created and that it is now part of the international decentralized information interchange.
+
+It's important to note that while the domain itself (the PDA) cannot be removed from the network, all of its content stored within it can be. This decision was made to limit external interventions as much as possible in the websites rendered by Decenwser.
+
+Overall, this smart contract provides a secure and efficient way for users to create and manage their own domains on the Solana blockchain. By leveraging the power of decentralization, users can enjoy increased control and autonomy over their online presence, while also benefiting from improved security and performance.
+
+<div align="center">
 
 ![inputs-main](/public/img/inputs-main.PNG)
+
 ![create-account-main](/public/img/create-account-main.PNG)
+
 ![main-account-logs](/public/img/main-account-logs.PNG)
+
+</div>
 
 ---
 
-<h3 id="store">html_store() & js_store()</h3>
+<h3 id="store" align="center">Store the content of the web page📝</h3>
 
-<br>
 
 ```rust
-use anchor_lang::{
-    prelude::*,
-    solana_program::pubkey::Pubkey
-};
-use crate::state::accounts::*;
-use crate::error::ErrorCode;
-
 pub fn html_store(
     ctx: Context<HtmlStore>,
     content: Vec<u8>
@@ -234,35 +237,32 @@ pub struct HtmlStore<'info> {
 }
 ```
 
-<p>The storage of HTML and JavaScript content is carried out thanks to the PDAs offered by Solana. These are accounts derived from the program that allow us to make use of this decentralized architecture.</p>
+The HTML and JavaScript content storage in the Solana blockchain is made possible through the use of Programmable Data Accounts (PDAs), which offer a decentralized architecture for secure data storage. The html_store() function within the smart contract code is responsible for storing HTML content on the blockchain. It takes in a vector of bytes as an argument, which is a string converted to bytes in order to prevent issues with Rust special characters and non-UTF-8 characters such as emojis or non-Latin alphabets.
 
-<p>The function js_store() has the same logic as html_store(), but passes "JS" as bytes in the PDA.
-An array of bytes is taken as an argument, which is a string converted to bytes. This is done in order to avoid Rust special characters (quotes, slashes, etc...) and Solana special characters (anything that is not UTF-8 text), which allows users to upload their applications using non-UTF-8 characters such as emojis or Asian and African alphabets.</p>
+To ensure the security of the data, only the domain authority is able to update the website with new content. The PDA data, which includes the content and bump, is then saved in the account. The bump is a value generated by the program that is used to prevent replay attacks.
 
-<p>Then, as a security measure, only the domain authority is able to update the website with new content. The PDA data (content and bump) is saved, and finally a message is emitted to announce the data used to create the account.</p>
+Similarly, the js_store() function is responsible for storing JavaScript content on the blockchain, and it follows the same logic as html_store(), but passes "JS" as bytes in the PDA.
 
-> The functions are divided into two to use the available runtime data and avoid using external variables that could cause errors when initializing the account.
+It is worth noting that the functions are divided into two parts to use the available runtime data and avoid using external variables that could cause errors when initializing the account. This helps to ensure that the account initialization process is smooth and secure.
+
+> Overall, the use of Solana's PDAs for content storage provides a number of benefits, including decentralization, security, and flexibility in terms of data formats. By leveraging this architecture, users can trust that their content is safe and accessible, while also enjoying the benefits of a decentralized network.
+
+<div align="center">
 
 ![store-input](/public/img/store-input.PNG)
+
 ![create-store](/public/img/create-store.PNG)
+
 ![logs-store](/public/img/logs-store.PNG)
+
+</div>
 
 ---
 
-<br>
 
-<h3 id="add">add_html() & add_js()</h3>
-
-<br>
+<h3 id="add" align="center">Add more content to the web📤 </h3>
 
 ```rust
-use anchor_lang::{
-    prelude::*,
-    solana_program::pubkey::Pubkey
-};
-use crate::state::accounts::*;
-use crate::error::ErrorCode;
-
 pub fn add_html(
     ctx: Context<AddHtml>,
     content: Vec<u8>
@@ -317,28 +317,29 @@ pub struct AddHtml<'info> {
 }
 ```
 
-<p>These two functions are intended to update the content of the PDA by increasing the storage space. First, it is verified that the authority is the owner, and then the maximum allowed in the PDA is checked, which in this case has been determined to be 9900 bytes of html/js content. After the value is stored, a global message is emitted to verify the update, and after all of the above has been completed, it is checked if the data volume has reached its maximum, and if so, the .html or .js of the account is increased by one to create another PDA and continue with the data upload process.</p>
+The function add_html is a crucial part of the program that is responsible for updating the content of the PDA on the Solana blockchain. This function provides an efficient and effective way of increasing the storage space of the PDA by adding HTML/JS content to it. The function is implemented in Rust and consists of several steps that ensure the security and integrity of the data being stored.
 
-> In version 0.2.4, this type of architecture was implemented, which allows for great performance when rendering the webpage.
+Firstly, the function verifies that the authority is the owner of the PDA by checking the signer key. Once the ownership is verified, the function checks the maximum allowed size of the PDA, which has been set at 9900 bytes of HTML/JS content. If the content to be added exceeds the maximum size, an error is returned.
+
+After verifying the ownership and maximum size of the PDA, the content is added to the PDA, and a global message is emitted to confirm the update. Furthermore, the function checks if the data volume has reached its maximum. If so, the .html or .js of the account is increased by one, which creates another PDA, and the data upload process continues seamlessly.
+
+> This type of architecture was implemented in version 0.2.4, which allows for great performance when rendering the webpage. The function is part of a larger program that runs on the Solana blockchain and has several other functions that work together to create and manage the web domain. The program's main goal is to provide an efficient and decentralized way of hosting web content on the blockchain, which brings numerous benefits such as increased security, accessibility, and censorship resistance.
+
+<div align="center">
 
 ![add-input](/public/img/add-input.PNG)
+
 ![add-transfer](/public/img/add-transfer.PNG)
+
 ![add-logs](/public/img/add-logs.PNG)
+
+</div>
 
 ---
 
-<br>
-
-<h3 id="delete"> delete_html() & delete_js()</h3>
+<h3 id="delete" align="center"> Remove content from the web❌</h3>
 
 ```rust
-use anchor_lang::{
-    prelude::*,
-    solana_program::pubkey::Pubkey
-};
-use crate::state::accounts::*;
-use crate::error::ErrorCode;
-
 pub fn delete_html(
     ctx: Context<DeleteHtml>
 ) -> Result<()> {
@@ -385,46 +386,64 @@ pub struct DeleteHtml<'info> {
 }
 ```
 
-<p>This function deletes the content of the PDA and returns the SOL to the creator. The function verifies that the signer is the authority, then obtains the SOL from the account and proceeds to remove the lamports from the PDA. Finally, a message is issued disclosing the data used to delete that account
-</p>
+The function described in this code focuses on deleting the contents of a PDA (Permanent Data Files) and returning SOLs (Solana's cryptocurrency) to the creator. This process is carried out through a series of verifications and actions that ensure the security and integrity of the Solana blockchain network.
+
+The first check performed in this function is the authority of the signer, which ensures that the person performing the action has the necessary permissions to do so. Once the authority is verified, we proceed to obtain the SOLs from the PDA and subtract them from the corresponding account.
+
+To carry out this operation, the information stored in the main account and in the PDA account is used, including the seed, the bump and the address of the accounts. In addition, a SOL transaction takes place between the signer's account and the PDA's account, ensuring that SOLs are returned to the creator safely and reliably.
+
+Finally, a message is issued informing users about the details of the operation performed. This includes the address of the signer, the number of SOLs removed, and the address of the corresponding PDA account.
+
+This function is a critical part of the programmatic application that runs on the Solana blockchain network. Its goal is to ensure the security and privacy of users by removing content from PDAs and reliably returning SOLs to their creator. By following a series of carefully designed checks and actions, this feature ensures that content removal is done effectively and securely, making it an essential part of the programmatic application on the Solana blockchain network.
+
+<div align="center">
 
 ![delete-input](/public/img/delete-input.PNG)
+
 ![delete-accounts](/public/img/delete-accounts.PNG)
+
 ![delete-logs](/public/img/delete-logs.PNG)
 
----
-
-<br>
-
-<h1 id="decenwser-index">Decenwser Browser</h1>
-
-<p>In this section they will analyze all aspects related to the operation of the browser. We will talk about the justification of the general development framework and its performance.</p>
-
-<br>
+</div>
 
 ---
 
-<h3 id="upload-web"> How to upload a page to Decenwser?</h3>
-<p>To upload a page, all you need to do is download the browser, compile the HTML and JavaScript into two different files, and go to "Upload a web" in the top bar.
+<h1 id="decenwser-index" align="center">Decenwser Browser💻</h1>
 
-- First, the code is converted to bytes so that it can be sent to the Solana blockchain.
-- Second, the user is asked to create a domain in which to upload the HTML and JavaScript. In this process, the wallet will be requested to sign this transaction and subsequent ones.
-- Third, the HTML is sent to the blockchain.
-- Fourth, the JavaScript is sent to the blockchain.
+In this section, all aspects related to the operation of the browser will be analyzed. The rationale for the general development framework used and its performance will be addressed. The key features of the browser will be examined and its advantages and disadvantages in relation to other browsers will be discussed. The different components of the browser will also be explored, including its rendering engine and its Node.js and Rocket.rs engine, as well as the underlying technologies that make them possible. In general, this section will provide a detailed insight into the inner workings of the browser and help users better understand its operation and performance.
 
-<p>The process is very straightforward and intuitive to execute. That said, it's worth noting that the data upload process often takes too long. A page made with React and compiled with webpack, with an output of about 400,000 lines of code in total, would take between 3:00 to 4:30 hours to complete the upload, and this could be affected by the user's internet connectivity.</p>
 
-<h3 id="important">Important things to keep in mind</h3>
+---
 
-<p>When developing an app for Decenwser, the .js file should be called from the HTML as a </p>
+<h3 id="upload-web"> How to upload a page to Decenwser?👀</h3>
+
+To upload a web page using Decenwser, you will first need to download the browser and compile the HTML and JavaScript files into two separate files. Once you have completed this, you can go to the "Upload a web" option located in the top bar of the Decenwser browser.
+
+The upload process involves the following steps:
+
+- The code is converted into bytes, enabling it to be sent to the Solana blockchain.
+- The user is then prompted to create a unique domain to host the uploaded HTML and JavaScript files. During this process, the wallet will be required to sign the transaction and any subsequent ones.
+- Next, the HTML file is sent to the blockchain.
+- Finally, the JavaScript file is sent to the blockchain.
+
+Overall, the upload process is simple and intuitive to execute. However, it's important to note that uploading data to the blockchain can sometimes take a while. For example, a page created with React and compiled with webpack, containing approximately 400,000 lines of code, may take between 3 to 4.5 hours to upload, depending on the user's internet connectivity. Despite this, the benefits of using a decentralized platform like Decenwser far outweigh the temporary inconvenience of a longer upload time, as it provides a secure and trustless way to host your content without relying on centralized intermediaries.
+
+---
+
+<h3 id="important">Important things to keep in mind❗ </h3>
+
+When you are developing an app for Decenwser, the .js file should be called from the HTML as a
 
 ```html
 <script src="../js.js"></script>
 ```
+This line of code is crucial for your application to run correctly on Decenwser's platform. By calling the .js file from the HTML, you ensure that all elements of your application load correctly and communicate effectively.
 
-<p>before the root div.</p>
+It is important to note that the .js file must be located in the same folder as the corresponding HTML file. Otherwise, the Decenwser platform will not be able to find and load the .js file, which could lead to errors and crashes in the application.
 
-<p>You have to add a CDN link depending on the framework you are working with, like React for example.</p>
+In conclusion, by calling the .js file from the HTML properly, you are ensuring that your application works effectively on Decenwser's platform. Therefore, it is important to follow these instructions to ensure success in developing your app on this decentralized platform.
+
+You have to add a CDN link depending on the framework you are working with, like React for example.
 
 ```html
 <script
@@ -437,41 +456,56 @@ pub struct DeleteHtml<'info> {
 ></script>
 ```
 
-<p>Webpack and Babel should be configured to compile the code and produce 2 outputs in production mode. Here's a template so you only need to write the web logic
+To compile the code and produce two outputs in production mode, it is necessary to configure Webpack and Babel appropriately. Here we present a template so that you only have to write the corresponding web logic.
+
+Webpack is a tool used to package and compile the source code of a web application into a set of smaller, browser-optimized files. To do this, it is necessary to correctly configure the Webpack configuration file, so that the inputs, outputs, and different modules to be used are specified.
+
+For its part, Babel is a code compiler used to convert modern JavaScript code to a version compatible with older browsers. To do this, you must install the necessary plugins and presets and configure the Babel configuration file according to the needs of the application.
+
+Once Webpack and Babel have been properly configured, you must ensure that two outputs are produced in production mode. This can be achieved by configuring Webpack to generate two different output files, one for the JavaScript code and one for the CSS styles. These files can be minified and optimized for faster page load.
 
 [link here](https://github.com/mateolafalce/template-decenwser-app)
 
-It includes a React CDN link, but you can use any.</p>
+It includes a React CDN link, but you can use any.
 
 > The wallet is only stored in the application signing process and in case of modifying or deleting content. After that, it is cleaned of the data by the system program.
 
-<p>The images in Decenwser must be imported from either traditional servers or decentralized servers. Currently, storing images passed to base64 on the blockchain is very expensive. If a user chooses to do so, they do it at their own risk. From banners to the favicon, they must be externally imported with links into the application's source code running on Decenwser.</p>
+The images in Decenwser must be imported from either traditional servers or decentralized servers. Currently, storing images passed to base64 on the blockchain is very expensive. If a user chooses to do so, they do it at their own risk. From banners to the favicon, they must be externally imported with links into the application's source code running on Decenwser.
 
 ---
 
-<h3 id="change-network">Change Networks</h3>
+<h3 id="change-network">Change Network♻️</h3>
 
-<p>To change between Devnet and Mainnet, you can access the main dashboard and change the network you want to navigate in just one click. By changing networks, the entire application state will adjust to your needs for both development and navigation</p>
+If you want to switch between Devnet and Mainnet in the app, you can do it through the main panel. Just select the network you want to navigate with a single click. When you switch networks, all of the app's state will automatically adjust to your needs, whether it's for development or browsing.
+
+This process is very simple and easy to perform, and it allows you to switch between both networks without problems. In addition, by doing so, you will be able to access all the functionalities and tools available in each one of them.
+
+By changing networks, you will also be able to test your application in different environments, allowing you to ensure that it works correctly in all possible scenarios. This is especially important if you are developing an application for use on the blockchain network, as you will need to ensure its compatibility and functionality in all possible environments.
+
+
 <div align="center">
-  
+
   ![change-network](/public/img/change-network.PNG)
-  
+
 </div>
 
 ---
 
-<h3 id="save-web-locally">Save a webpage locally</h3>
+<h3 id="save-web-locally">Save a webpage locally⛺</h3>
 
-<p>To avoid having to wait for the content to load directly from the blockchain, you can store the app locally in your browser. Simply press Ctrl + d to access the page immediately on your next search.</p>
-<p>This function stores the content of the page at the time of saving. If the source code of the page is updated (not necessarily the content), you will need to remove the app from the browser by going to the apps tab on the homepage.</p>
+If you want to avoid having to wait for content to load directly from the blockchain every time you access the page, there is a simple solution: you can store the app locally in your browser. To do this, simply press Ctrl + d and you will be able to access the page immediately on your next searches.
+
+It is important to note that this function stores the content of the page at the time of saving it. If the page's source code is updated (but not necessarily the content), you'll need to delete the app from the browser and save it again to access the latest version.
+
+To remove the application from the browser, just go to the applications tab on the main page of the browser and select the application you want to remove. Once you've deleted the app, you can save it again to access the updated version.
+
+Storing the app locally in the browser can be a great way to save time by accessing content faster. However, it is important to note that this function stores the current version of the page, so if the source code is updated, you need to delete the app from the browser and save it again to access the most recent version.
 
 ---
 
-<br>
+<h3 id="save-web-locallyget_page">get_page()📬 </h3>
 
-## get_page() function performance.
-
-This takes the speed for each pda fetched from the blockchain and rendered in the app.
+The get_page() function is responsible for fetching the content of the PDAs from the Solana blockchain and rendering them in the app. The speed at which this process occurs varies depending on the version being used, as shown in the table below:
 
 <div align="center">
 
@@ -487,4 +521,4 @@ This takes the speed for each pda fetched from the blockchain and rendered in th
 
 </div>
 
-> The current architecture is the one implemented in version 0.2.4, which came to solve a problem of iterational volume with the PDAs at the time of rendering, together with the fact that they stopped passing strings, instead passing bytes.
+> The current version (0.2.4) of the architecture is the most efficient, having solved the problem of iterative volume with the PDAs during rendering. Additionally, it is worth noting that the PDAs now pass bytes instead of strings, further improving the efficiency of the process. Overall, the get_page() function plays a crucial role in enabling users to access and view the content stored on the decentralized web3 platform.
