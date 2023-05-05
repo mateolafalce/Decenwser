@@ -39,7 +39,10 @@ Decenwser is a tool that promises to change the way we interact with the web and
 
 ---
 
-## Index
+<h3 align="center">Index</h3>
+
+<details>
+<summary>Show</summary>
 
 - <a href="#install">**Install the Project 📋**</a>
   - <a href="#install-rust">Install Rust🦀 </a>
@@ -57,6 +60,9 @@ Decenwser is a tool that promises to change the way we interact with the web and
   - <a href="#change-network">Change network♻️</a>
   - <a href="#save-web-locally">Save a webpage locally⛺</a>
   - <a href="#get_page">get_page()📬</a>
+  
+ </details>
+  
 ---
 
 <h1 id="install"> Install the project📋 </h1>
