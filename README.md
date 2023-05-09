@@ -39,10 +39,8 @@ Decenwser is a tool that promises to change the way we interact with the web and
 
 ---
 
-<h3 align="center">Index</h3>
-
 <details>
-<summary>Show</summary>
+<summary>Index</summary>
 
 - <a href="#install">**Install the Project 📋**</a>
   - <a href="#install-rust">Install Rust </a>
@@ -136,20 +134,12 @@ cargo run
 ```
 This should build and run the project, allowing you to interact with the decentralized servers.
 
-
-
-<h3 id="source"> Download the source🗂️ </h3>
-
-```bash
-git clone https://github.com/mateolafalce/Decenwser.git && cd Decenwser && cargo run
-```
-
  </details>
 
 ---
 
-
-<h1 id="blockchain-program"> Blockchain program⛓️</h1>
+<details>
+<summary>Blockchain program⛓️</summary>
 
 Available [`here`](https://github.com/mateolafalce/Decenwser-blockchain-program)
 
@@ -236,6 +226,8 @@ Overall, this smart contract provides a secure and efficient way for users to cr
 ![main-account-logs](/public/img/main-account-logs.PNG)
 
 </div>
+
+</details>
 
 ---
 
