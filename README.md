@@ -45,50 +45,106 @@ Decenwser is a tool that promises to change the way we interact with the web and
 <summary>Show</summary>
 
 - <a href="#install">**Install the Project 📋**</a>
-  - <a href="#install-rust">Install Rust🦀 </a>
-  - <a href="#install-solana">Install Solana🌞</a>
-  - <a href="#install-node">Install Node Js🚀</a>
-  - <a href="#source">Download the source🗂️ </a>
+  - <a href="#install-rust">Install Rust </a>
+  - <a href="#install-solana">Install Solana</a>
+  - <a href="#install-node">Install Node Js</a>
+  - <a href="#source">Download the source </a>
 - <a href="#blockchain-program">**Blockchain Program ⛓️**</a>
-  - <a href="#main-account"> Create a domain 💻 </a>
-  - <a href="#store"> Store the content of the web page📝</a>
-  - <a href="#add">Add more content to the web📤 </a>
-  - <a href="#delete">Remove content from the web❌ </a>
+  - <a href="#main-account"> Create a domain</a>
+  - <a href="#store"> Store the content of the web page</a>
+  - <a href="#add">Add more content to the web </a>
+  - <a href="#delete">Remove content from the web</a>
 - <a href="#decenwser-index">**Decenwser Browser 💻**</a>
-  - <a href="#upload-web">How to upload a page to Decenwser?👀</a>
-  - <a href="#important">Important things to keep in mind❗</a>
-  - <a href="#change-network">Change network♻️</a>
-  - <a href="#save-web-locally">Save a webpage locally⛺</a>
-  - <a href="#get_page">get_page()📬</a>
-  
+  - <a href="#upload-web">How to upload a page to Decenwser?</a>
+  - <a href="#important">Important things to keep in mind</a>
+  - <a href="#change-network">Change network</a>
+  - <a href="#save-web-locally">Save a webpage locally</a>
+  - <a href="#get_page">get_page()</a>
+
  </details>
-  
+
 ---
 
-<h1 id="install"> Install the project📋 </h1>
+<details>
+<summary>Install the project📋</summary>
 
 If you're looking to install and run a project on your PC, it's important to follow a set of instructions to ensure everything runs smoothly. Below are some guidelines to help you get started
 
-<h3 id="install-rust"> Install Rust🦀 </h3>
 
-Install rust to be able to compile the code on your machine
-[here](https://www.rust-lang.org/tools/install)
+<h2> Installation Guide </h2>
+To be able to install and run the project on your PC, you'll need to follow a set of instructions. Below are some guidelines to help you get started.
 
-<h3 id="install-solana"> Install Solana🌞 </h3>
+<h3 id="install-rust"> Install Rust 🦀 </h3>
+Rust is required to compile the code on your machine. To install Rust, follow the steps below:
 
-Install solana to be able to connect to the blockchain and sign transactions
-[here](https://docs.solana.com/cli/install-solana-cli-tools#use-solanas-install-tool).
+Go to the [official Rust website](https://www.rust-lang.org/tools/install)and select your operating system.
 
-<h3 id="install-node"> Install Node.js🚀 </h3>
+Follow the instructions provided to download and install Rust.
 
-Install the latest version of node.js to be able to mount decentralized servers
-[here](https://nodejs.org/en/download/)
+Verify that Rust has been installed correctly by running the following command in your terminal:
+
+```bash
+rustc --version
+```
+This should print out the version of Rust that you just installed.
+
+<h3 id="install-solana"> Install Solana 🌞 </h3>
+Solana is required to connect to the blockchain and sign transactions. To install Solana, follow the steps below:
+
+Go to the [Solana CLI installation page](https://docs.solana.com/cli/install-solana-cli-tools#use-solanas-install-tool)..
+
+Follow the instructions provided to download and install the Solana CLI.
+
+Verify that Solana has been installed correctly by running the following command in your terminal:
+
+```bash
+solana --version
+```
+This should print out the version of Solana that you just installed.
+
+<h3 id="install-node"> Install Node.js 🚀 </h3>
+Node.js is required to mount decentralized servers. To install the latest version of Node.js, follow the steps below:
+
+Go to the [official Node.js website](https://nodejs.org/en/download/) and select your operating system.
+
+Follow the instructions provided to download and install Node.js.
+
+Verify that Node.js has been installed correctly by running the following command in your terminal:
+
+```bash
+node --version
+```
+This should print out the version of Node.js that you just installed.
+
+<h3 id="source"> Download the source 🗂️ </h3>
+To download the source code and run the project, follow the steps below:
+
+Clone the Decenwser repository by running the following command in your terminal:
+
+```bash
+git clone https://github.com/mateolafalce/Decenwser.git
+```
+Change into the Decenwser directory by running the following command in your terminal:
+
+```bash
+cd Decenwser
+```
+Build and run the project by running the following command in your terminal:
+
+```bash
+cargo run
+```
+This should build and run the project, allowing you to interact with the decentralized servers.
+
+
 
 <h3 id="source"> Download the source🗂️ </h3>
 
 ```bash
 git clone https://github.com/mateolafalce/Decenwser.git && cd Decenwser && cargo run
 ```
+
+ </details>
 
 ---
 
