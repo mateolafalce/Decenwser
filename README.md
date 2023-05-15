@@ -323,8 +323,11 @@ It is worth noting that the functions are divided into two parts to use the avai
 
 ---
 
+<details>
+<summary>Add more content to the web📤</summary>
 
-<h3 id="add" align="center">Add more content to the web📤 </h3>
+<br>
+
 
 ```rust
 pub fn add_html(
@@ -398,6 +401,8 @@ After verifying the ownership and maximum size of the PDA, the content is added 
 ![add-logs](/public/img/add-logs.PNG)
 
 </div>
+
+</details>
 
 ---
 
