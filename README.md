@@ -42,6 +42,8 @@ Decenwser is a tool that promises to change the way we interact with the web and
 <details>
 <summary>Index</summary>
 
+<br>
+
 - <a href="#install">**Install the Project 📋**</a>
   - <a href="#install-rust">Install Rust </a>
   - <a href="#install-solana">Install Solana</a>
@@ -65,6 +67,8 @@ Decenwser is a tool that promises to change the way we interact with the web and
 
 <details>
 <summary>Install the project📋</summary>
+
+<br>
 
 If you're looking to install and run a project on your PC, it's important to follow a set of instructions to ensure everything runs smoothly. Below are some guidelines to help you get started
 
@@ -140,6 +144,8 @@ This should build and run the project, allowing you to interact with the decentr
 
 <details>
 <summary>Blockchain program⛓️</summary>
+
+<br>
 
 Available [`here`](https://github.com/mateolafalce/Decenwser-blockchain-program)
 
@@ -231,8 +237,10 @@ Overall, this smart contract provides a secure and efficient way for users to cr
 
 ---
 
-<h3 id="store" align="center">Store the content of the web page📝</h3>
+<details>
+<summary>Store the content of the web page📝</summary>
 
+<br>
 
 ```rust
 pub fn html_store(
@@ -310,6 +318,8 @@ It is worth noting that the functions are divided into two parts to use the avai
 ![logs-store](/public/img/logs-store.PNG)
 
 </div>
+
+</details>
 
 ---
 
