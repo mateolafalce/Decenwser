@@ -482,10 +482,14 @@ This function is a critical part of the programmatic application that runs on th
 
 ---
 
-<h1 id="decenwser-index" align="center">Decenwser Browser💻</h1>
+<details>
+<summary>Decenwser browser concept💻</summary>
+
+<br>
 
 In this section, all aspects related to the operation of the browser will be analyzed. The rationale for the general development framework used and its performance will be addressed. The key features of the browser will be examined and its advantages and disadvantages in relation to other browsers will be discussed. The different components of the browser will also be explored, including its rendering engine and its Node.js and Rocket.rs engine, as well as the underlying technologies that make them possible. In general, this section will provide a detailed insight into the inner workings of the browser and help users better understand its operation and performance.
 
+</details>
 
 ---
 
