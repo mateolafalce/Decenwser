@@ -406,7 +406,10 @@ After verifying the ownership and maximum size of the PDA, the content is added 
 
 ---
 
-<h3 id="delete" align="center"> Remove content from the web❌</h3>
+<details>
+<summary>Remove content from the web❌</summary>
+
+<br>
 
 ```rust
 pub fn delete_html(
@@ -474,6 +477,8 @@ This function is a critical part of the programmatic application that runs on th
 ![delete-logs](/public/img/delete-logs.PNG)
 
 </div>
+
+</details>
 
 ---
 
