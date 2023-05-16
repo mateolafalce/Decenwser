@@ -513,7 +513,10 @@ Overall, the upload process is simple and intuitive to execute. However, it's im
 
 ---
 
-<h3 id="important">Important things to keep in mind❗ </h3>
+<details>
+<summary>Important things to keep in mind❗</summary>
+
+<br>
 
 When you are developing an app for Decenwser, the .js file should be called from the HTML as a
 
@@ -554,6 +557,8 @@ It includes a React CDN link, but you can use any.
 > The wallet is only stored in the application signing process and in case of modifying or deleting content. After that, it is cleaned of the data by the system program.
 
 The images in Decenwser must be imported from either traditional servers or decentralized servers. Currently, storing images passed to base64 on the blockchain is very expensive. If a user chooses to do so, they do it at their own risk. From banners to the favicon, they must be externally imported with links into the application's source code running on Decenwser.
+
+</details>
 
 ---
 
