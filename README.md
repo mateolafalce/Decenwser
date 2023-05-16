@@ -493,7 +493,10 @@ In this section, all aspects related to the operation of the browser will be ana
 
 ---
 
-<h3 id="upload-web"> How to upload a page to Decenwser?👀</h3>
+<details>
+<summary>How to upload a page to Decenwser?👀</summary>
+
+<br>
 
 To upload a web page using Decenwser, you will first need to download the browser and compile the HTML and JavaScript files into two separate files. Once you have completed this, you can go to the "Upload a web" option located in the top bar of the Decenwser browser.
 
@@ -505,6 +508,8 @@ The upload process involves the following steps:
 - Finally, the JavaScript file is sent to the blockchain.
 
 Overall, the upload process is simple and intuitive to execute. However, it's important to note that uploading data to the blockchain can sometimes take a while. For example, a page created with React and compiled with webpack, containing approximately 400,000 lines of code, may take between 3 to 4.5 hours to upload, depending on the user's internet connectivity. Despite this, the benefits of using a decentralized platform like Decenwser far outweigh the temporary inconvenience of a longer upload time, as it provides a secure and trustless way to host your content without relying on centralized intermediaries.
+
+</details>
 
 ---
 
