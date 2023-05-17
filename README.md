@@ -561,8 +561,8 @@ The images in Decenwser must be imported from either traditional servers or dece
 </details>
 
 ---
-
-<h3 id="change-network">Change Network♻️</h3>
+<details>
+<summary>Change Network♻️</summary>
 
 If you want to switch between Devnet and Mainnet in the app, you can do it through the main panel. Just select the network you want to navigate with a single click. When you switch networks, all of the app's state will automatically adjust to your needs, whether it's for development or browsing.
 
@@ -576,6 +576,8 @@ By changing networks, you will also be able to test your application in differen
   ![change-network](/public/img/change-network.PNG)
 
 </div>
+
+</details>
 
 ---
 
