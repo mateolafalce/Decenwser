@@ -581,7 +581,8 @@ By changing networks, you will also be able to test your application in differen
 
 ---
 
-<h3 id="save-web-locally">Save a webpage locally⛺</h3>
+<details>
+<summary>Save a webpage locally⛺</summary>
 
 If you want to avoid having to wait for content to load directly from the blockchain every time you access the page, there is a simple solution: you can store the app locally in your browser. To do this, simply press Ctrl + d and you will be able to access the page immediately on your next searches.
 
@@ -590,6 +591,8 @@ It is important to note that this function stores the content of the page at the
 To remove the application from the browser, just go to the applications tab on the main page of the browser and select the application you want to remove. Once you've deleted the app, you can save it again to access the updated version.
 
 Storing the app locally in the browser can be a great way to save time by accessing content faster. However, it is important to note that this function stores the current version of the page, so if the source code is updated, you need to delete the app from the browser and save it again to access the most recent version.
+
+</details>
 
 ---
 
