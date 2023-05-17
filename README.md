@@ -564,6 +564,8 @@ The images in Decenwser must be imported from either traditional servers or dece
 <details>
 <summary>Change Network♻️</summary>
 
+<br>
+
 If you want to switch between Devnet and Mainnet in the app, you can do it through the main panel. Just select the network you want to navigate with a single click. When you switch networks, all of the app's state will automatically adjust to your needs, whether it's for development or browsing.
 
 This process is very simple and easy to perform, and it allows you to switch between both networks without problems. In addition, by doing so, you will be able to access all the functionalities and tools available in each one of them.
@@ -584,6 +586,8 @@ By changing networks, you will also be able to test your application in differen
 <details>
 <summary>Save a webpage locally⛺</summary>
 
+<br>
+
 If you want to avoid having to wait for content to load directly from the blockchain every time you access the page, there is a simple solution: you can store the app locally in your browser. To do this, simply press Ctrl + d and you will be able to access the page immediately on your next searches.
 
 It is important to note that this function stores the content of the page at the time of saving it. If the page's source code is updated (but not necessarily the content), you'll need to delete the app from the browser and save it again to access the latest version.
@@ -596,7 +600,10 @@ Storing the app locally in the browser can be a great way to save time by access
 
 ---
 
-<h3 id="save-web-locallyget_page">get_page()📬 </h3>
+<details>
+<summary>fn get_page()📬</summary>
+
+<br>
 
 The get_page() function is responsible for fetching the content of the PDAs from the Solana blockchain and rendering them in the app. The speed at which this process occurs varies depending on the version being used, as shown in the table below:
 
@@ -615,3 +622,5 @@ The get_page() function is responsible for fetching the content of the PDAs from
 </div>
 
 > The current version (0.2.4) of the architecture is the most efficient, having solved the problem of iterative volume with the PDAs during rendering. Additionally, it is worth noting that the PDAs now pass bytes instead of strings, further improving the efficiency of the process. Overall, the get_page() function plays a crucial role in enabling users to access and view the content stored on the decentralized web3 platform.
+
+</details>
